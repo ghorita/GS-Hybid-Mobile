@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {View, Text, TextInput, StyleSheet, Image, ImageBackground, ScrollView, FlatList, Button} from 'react-native';
+import React, { useState } from 'react';
+import { Button, FlatList, Text, TextInput, View, StyleSheet, Image} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -9,33 +9,11 @@ import imgLogin from './assets/hamburguer.png';
 const Tab = createBottomTabNavigator();
 const {Navigator, Screen} = Tab;
 
+
 const Registro = (props)=>{
-
-  const [nome, setNome] = useState("");
-  const [email, setEmail] = useState("");
-  const [senha, setSenha] = useState("");
-  const [cep, setCep] = useState("");
-
   return(
     <View style = {{flex: 1, backgroundColor: "#202025"}}>    
-        <Text style= {{textAlign: "center", color: "white", FontWeight: 900, fontSize: 24, marginTop: 40}}>Criando nova conta</Text>
-        <Text style = {{textAlign: "center", color: "gray", fontSize: 14, marginTop: 10}}>Por favor, preencha tudo para continuar</Text>
-        
-        <View style = {{marginTop: 40}}>
-          <TextInput placeholder = "Nome completo" style = {styles.inputRegistrar} value = {nome} onChangeText = {setNome}/>
-          <TextInput placeholder = "Email" style = {styles.inputRegistrar} value = {email} onChangeText = {setEmail}/>
-          <TextInput placeholder = "Senha" style = {styles.inputRegistrar} value = {senha} onChangeText = {setSenha}/>
-          <TextInput placeholder = "CEP" style = {styles.inputRegistrar} value = {cep} onChangeText = {setCep}/>
-
-        <Text style = {styles.buttonCriar} title="Registrar" onPress={()=>{
-          const usuarios = [
-            {nome: "Gustavo", email: "gustavo@teste.com", senha: "123", cep: "111"},
-            {nome: "Julia", email: "julia@teste.com", senha: "123", cep: "222"}]
-        AsyncStorage.setItem("USUARIOS", JSON.stringify(usuarios));
-      }}>Criar conta</Text>
- 
-        </View>
-
+       <Text>TELA DE REGISTRO</Text>
       </View>
   )
 }
@@ -46,16 +24,15 @@ const Login = (props) =>{
   const [senha, setSenha] = useState("");
 
   return(
+
     <View style = {{flex: 1, backgroundColor: "#202025"}}>
       <Image source = {imgLogin} style = {styles.logoLogin}/>
 
       <View style = {{marginTop: 10}}>
         <TextInput placeholder = "Email" style = {styles.inputLogin} value = {email} onChangeText = {setEmail}/>
-        <TextInput placeholder = "Senha"style = {styles.inputLogin} value = {senha} onChangeText = {setSenha}/>
+        <TextInput  secureTextEntry = {true} placeholder = "Senha"style = {styles.inputLogin} value = {senha} onChangeText = {setSenha}/>
 
-        <Text style = {styles.buttonLogin}>Login</Text>
-        <Text style = {{color: "white", textAlign: "center", marginTop: 20}}>Ainda não tem cadastro?</Text>
-        <Text style = {styles.buttonCriar} title="Login" onPress={()=>{
+        <Text style = {styles.buttonLogin} onPress={()=>{
         AsyncStorage.getItem("USUARIOS")
         .then((info)=>{ 
           const usuarios = JSON.parse(info);
@@ -77,6 +54,19 @@ const Login = (props) =>{
         })
         .catch((err) => alert("Erro ao ler a lista e usuarios"))
       }}>Login</Text>
+  
+        <Text style = {{color: "white", textAlign: "center", marginTop: 20}}>Ainda não tem cadastro?</Text>
+
+        <Text style = {styles.buttonCriar} onPress={()=>{
+        const usuarios = [ {email: "joao@teste.com", senha: "1234"},
+        {email: "gustavo@teste.com", senha: "1234"},
+        {email: "julia@teste.com", senha: "1234"},
+        {email: "vinicius@teste.com", senha: "1234"} ]
+        AsyncStorage.setItem("USUARIOS", JSON.stringify(usuarios));
+        alert("Ok")
+      }}>Criar Conta</Text>
+     
+        
       </View>
     </View>
   )
@@ -89,11 +79,11 @@ const Telas = (props)=>{
       <Text>TESTE</Text>
       <Navigator>
         <Screen name = "Registro">
-          {()=><Registro/>}
+          {(props)=><Registro{...props}/>}
         </Screen>
 
         <Screen name = "Login">
-          {()=><Login/>}
+          {(props)=><Login{...props}/>}
         </Screen>
       </Navigator>
     </View>
@@ -101,14 +91,18 @@ const Telas = (props)=>{
 }
 
 export default function App(){
+  const [logado, setLogado] = useState();
 
-  const Tab = createBottomTabNavigator();
-  const {Navigator, Screen} = Tab;
+
+  const fazerLogin = ( logged ) =>{
+    setLogado( logged )
+  }
 
   return(
     <NavigationContainer>
       <View style = {{flex: 1}}>
-        <Telas/>
+      {logado ? <Registro/> : 
+                  <Login onLogar={fazerLogin}/>}
       </View>
     </NavigationContainer>
   )
