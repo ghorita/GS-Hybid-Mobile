@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
-import {View, Text, TextInput, StyleSheet, Image, ImageBackground, ScrollView, FlatList} from 'react-native';
+import {View, Text, TextInput, StyleSheet, Image, ImageBackground, ScrollView, FlatList, Button} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import imgLogin from './assets/hamburguer.png';
 
+const Tab = createBottomTabNavigator();
+const {Navigator, Screen} = Tab;
 
 const Registro = (props)=>{
 
@@ -24,8 +26,14 @@ const Registro = (props)=>{
           <TextInput placeholder = "Email" style = {styles.inputRegistrar} value = {email} onChangeText = {setEmail}/>
           <TextInput placeholder = "Senha" style = {styles.inputRegistrar} value = {senha} onChangeText = {setSenha}/>
           <TextInput placeholder = "CEP" style = {styles.inputRegistrar} value = {cep} onChangeText = {setCep}/>
-          
-          <Text style = {styles.buttonCriar}>Criar conta</Text>
+
+        <Text style = {styles.buttonCriar} title="Registrar" onPress={()=>{
+          const usuarios = [
+            {nome: "Gustavo", email: "gustavo@teste.com", senha: "123", cep: "111"},
+            {nome: "Julia", email: "julia@teste.com", senha: "123", cep: "222"}]
+        AsyncStorage.setItem("USUARIOS", JSON.stringify(usuarios));
+      }}>Criar conta</Text>
+ 
         </View>
 
       </View>
@@ -47,15 +55,50 @@ const Login = (props) =>{
 
         <Text style = {styles.buttonLogin}>Login</Text>
         <Text style = {{color: "white", textAlign: "center", marginTop: 20}}>Ainda não tem cadastro?</Text>
-        <Text style = {styles.buttonRegistrarse}>Registrar-se</Text>
+        <Text style = {styles.buttonCriar} title="Login" onPress={()=>{
+        AsyncStorage.getItem("USUARIOS")
+        .then((info)=>{ 
+          const usuarios = JSON.parse(info);
+          let achado = false
+          for( const user of usuarios) { 
+            if (user.email === email && 
+                user.senha === senha){ 
+                  achado = true;
+            }
+          }
+          if (achado) { 
+            props.onLogar(true);
+            alert("Usuario logado");
+          } else {
+            props.onLogar(false);
+            alert("Usuario ou senha incorretos");
+          }
+
+        })
+        .catch((err) => alert("Erro ao ler a lista e usuarios"))
+      }}>Login</Text>
       </View>
     </View>
   )
 }
 
 
+const Telas = (props)=>{
+  return(
+    <View style = {{flex: 1}}>
+      <Text>TESTE</Text>
+      <Navigator>
+        <Screen name = "Registro">
+          {()=><Registro/>}
+        </Screen>
 
-
+        <Screen name = "Login">
+          {()=><Login/>}
+        </Screen>
+      </Navigator>
+    </View>
+  )
+}
 
 export default function App(){
 
@@ -63,9 +106,11 @@ export default function App(){
   const {Navigator, Screen} = Tab;
 
   return(
-    <View style = {{flex: 1}}>
-      <Login/>
-    </View>
+    <NavigationContainer>
+      <View style = {{flex: 1}}>
+        <Telas/>
+      </View>
+    </NavigationContainer>
   )
 }
 
