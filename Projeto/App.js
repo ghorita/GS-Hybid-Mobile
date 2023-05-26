@@ -74,9 +74,8 @@ const Consulta = (props)=>{
 
 const Login = (props) =>{
 
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(""); 
   const [senha, setSenha] = useState("");
-
   return(
 
     <View style = {{flex: 1, backgroundColor: "#202025"}}>
@@ -145,7 +144,7 @@ const Telas = (props)=>{
 }
 
 export default function App(){
-  const [logado, setLogado] = useState(true);
+  const [logado, setLogado] = useState();
 
 
   const fazerLogin = ( logged ) =>{
