@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, FlatList, Text, TextInput, View, StyleSheet, Image} from 'react-native';
+import { Button, FlatList, Text, TextInput, View, StyleSheet, Image, Modal} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -13,6 +13,9 @@ const {Navigator, Screen} = Tab;
 
 
 const Consulta = (props)=>{
+
+  const [visivel, setVisivel] = useState(false);
+
   return(
     <View style = {{flex: 1, backgroundColor: "#202025"}}>    
 
@@ -23,10 +26,10 @@ const Consulta = (props)=>{
 
         <View style = {{flexDirection: "row", alignItems:"center", marginLeft: 100}}>
           <Image source = {imgLogin} style = {styles.logoConsulta}/>
-          <Text style= {{color: "white", textAlign: "center"}}>TechTitan</Text>  
+          <Text style= {{color: "white", textAlign: "center", fontSize: 16, fontWeight: 700}}>TechTitan</Text>  
         </View>
 
-        <View style = {{marginLeft: 110}}>
+        <View style = {{marginLeft: 103}}>
           <AntDesign name="hearto" size = {30} color = "white"/>
         </View>
       </View>   
@@ -38,13 +41,28 @@ const Consulta = (props)=>{
                               borderRightWidth: 0, borderLeftWidht: 0}}/>
       </View>
 
-      <View>
-        
-      </View>
-
+      
+        <Modal transparent = {true} visible = {visivel} animationType= "slide" onRequestClose={()=>{setVisivel(false)}}>
+          <View style = {styles.VModal}>
+            <Image source = {imgLogin} style = {styles.logoConsulta}/>
+            <Text style = {styles.titleModal}>Água</Text>
+            <View style = {{marginTop: 10}}>
+              <Text style = {styles.dadosModal}>Fazenda: FIAP </Text>
+              <Text style = {styles.dadosModal}>Fábrica: FIAP</Text>
+              <Text style = {styles.dadosModal}>Distribuidor: FIAP</Text>
+              <Text style = {styles.ModalButton}onPress = {() =>{
+              setVisivel(false);
+              }}>x</Text>
+            </View>
+          </View>
+        </Modal>
+        <Text onPress = {()=>{
+          setVisivel(true)
+        }}>Agúa</Text>
+     
       
 
-
+    
     </View>
   )
 }
@@ -169,9 +187,11 @@ const styles = StyleSheet.create({
   },
 
   logoConsulta:{
-    height: 50, 
-    width: 50,
-    borderRadius: 9
+    height: 100, 
+    width: 100,
+    borderRadius: 9,
+    alignSelf: "center",
+    marginTop: 10
   },
 
   inputLogin:{
@@ -203,5 +223,31 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 16,
     fontWeight: 900
+  },
+
+  VModal:{
+    backgroundColor: "white",
+    marginHorizontal: 20,
+    height: "50%",
+    borderRadius: 9
+  },
+
+  ModalButton:{
+    backgroundColor: "#4B74C5",
+    textAlign: "center",
+    fontSize: 20,
+    fontWeight: 500
+  },
+
+  titleModal:{
+    textAlign: "center",
+    fontSize: 18,
+    fontWeight: 700,
+    marginTop: 5
+  },
+
+  dadosModal:{
+    fontSize: 14,
+    marginLeft: 130
   }
 })
