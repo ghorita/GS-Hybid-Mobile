@@ -3,6 +3,8 @@ import { Button, FlatList, Text, TextInput, View, StyleSheet, Image} from 'react
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {AntDesign} from '@expo/vector-icons';
+
 
 import imgLogin from './assets/hamburguer.png';
 
@@ -10,11 +12,40 @@ const Tab = createBottomTabNavigator();
 const {Navigator, Screen} = Tab;
 
 
-const Registro = (props)=>{
+const Consulta = (props)=>{
   return(
     <View style = {{flex: 1, backgroundColor: "#202025"}}>    
-       <Text>TELA DE REGISTRO</Text>
+
+      <View style = {{flexDirection: "row", marginTop: 30}}>
+        <View>
+          <AntDesign name = "user" size = {30} color = "white"/>
+        </View>
+
+        <View style = {{flexDirection: "row", alignItems:"center", marginLeft: 100}}>
+          <Image source = {imgLogin} style = {styles.logoConsulta}/>
+          <Text style= {{color: "white", textAlign: "center"}}>TechTitan</Text>  
+        </View>
+
+        <View style = {{marginLeft: 110}}>
+          <AntDesign name="hearto" size = {30} color = "white"/>
+        </View>
+      </View>   
+
+      <View style = {{marginTop: 10}}>
+        <TextInput placeholder = "Digite o nome ou QR Code do produto"
+                   style = {{borderWidth: 1, borderColor: "gray",
+                              paddingVertical: 15, fontSize: 16,
+                              borderRightWidth: 0, borderLeftWidht: 0}}/>
       </View>
+
+      <View>
+        
+      </View>
+
+      
+
+
+    </View>
   )
 }
 
@@ -91,7 +122,7 @@ const Telas = (props)=>{
 }
 
 export default function App(){
-  const [logado, setLogado] = useState();
+  const [logado, setLogado] = useState(true);
 
 
   const fazerLogin = ( logged ) =>{
@@ -101,7 +132,7 @@ export default function App(){
   return(
     <NavigationContainer>
       <View style = {{flex: 1}}>
-      {logado ? <Registro/> : 
+      {logado ? <Consulta/> : 
                   <Login onLogar={fazerLogin}/>}
       </View>
     </NavigationContainer>
@@ -134,6 +165,12 @@ const styles = StyleSheet.create({
     width: 200,
     alignSelf: "center",
     marginTop: 60,
+    borderRadius: 9
+  },
+
+  logoConsulta:{
+    height: 50, 
+    width: 50,
     borderRadius: 9
   },
 
