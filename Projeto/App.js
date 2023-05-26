@@ -41,7 +41,7 @@ const Consulta = (props)=>{
                               borderRightWidth: 0, borderLeftWidht: 0}}/>
       </View>
 
-      
+      <View style = {{marginTop: 10}}>
         <Modal transparent = {true} visible = {visivel} animationType= "slide" onRequestClose={()=>{setVisivel(false)}}>
           <View style = {styles.VModal}>
             <Image source = {imgLogin} style = {styles.logoConsulta}/>
@@ -56,13 +56,18 @@ const Consulta = (props)=>{
             </View>
           </View>
         </Modal>
-        <Text onPress = {()=>{
-          setVisivel(true)
-        }}>Agúa</Text>
-     
-      
 
-    
+
+        <View>        
+        <Image source = {imgLogin} style = {styles.logoModal}/>
+
+          <Text  style = {{marginLeft: 100, fontSize: 16, color: "white"}} onPress = {()=>{
+            setVisivel(true)
+          }}>Agúa</Text>
+        </View>
+       </View> 
+
+
     </View>
   )
 }
@@ -187,11 +192,18 @@ const styles = StyleSheet.create({
   },
 
   logoConsulta:{
-    height: 100, 
-    width: 100,
+    height: 50, 
+    width: 50,
     borderRadius: 9,
     alignSelf: "center",
     marginTop: 10
+  },
+
+  logoModal:{
+    width: 200, 
+    height: 200,
+    marginLeft: 10,
+    borderRadius: 9
   },
 
   inputLogin:{
