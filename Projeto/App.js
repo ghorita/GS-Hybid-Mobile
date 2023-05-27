@@ -8,6 +8,12 @@ import {AntDesign} from '@expo/vector-icons';
 
 import imgLogin from './assets/hamburguer.png';
 
+/*
+const api = axios.create({
+  baseURL: "link da API"
+});
+*/
+
 const Tab = createBottomTabNavigator();
 const {Navigator, Screen} = Tab;
 
