@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, FlatList, Text, TextInput, View, StyleSheet, Image, Modal} from 'react-native';
+import { Button, FlatList, Text, TextInput, View, StyleSheet, Image, Modal, ScrollView} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -11,7 +11,7 @@ import imgLogin from './assets/hamburguer.png';
 import imgCarne from './assets/carne.jpg';
 import imgMilho from './assets/milho.jpg';
 import imgTomate from './assets/tomate.jpg';
-import imgBrocolis from './assets/brocolis.avif';
+import imgBrocolis from './assets/brocolis.jpg';
 /*
 const api = axios.create({
   baseURL: "link da API"
@@ -63,11 +63,38 @@ const Consulta = (props)=>{
         <Modal transparent = {true} visible = {modalMilho} animationType= "slide" onRequestClose={()=>{setModalMilho(false)}}>
           <View style = {styles.VModal}>
             <Image source = {imgMilho} style = {styles.logoConsulta}/>
-            <Text style = {styles.titleModal}>Água</Text>
+            <Text style = {styles.titleModal}>Milho</Text>
             <View style = {{marginTop: 10}}>
-              <Text style = {styles.dadosModal}>Fazenda: FIAP </Text>
-              <Text style = {styles.dadosModal}>Fábrica: FIAP</Text>
-              <Text style = {styles.dadosModal}>Distribuidor: FIAP</Text>
+              <Text>ALimento</Text>
+              <Text style = {styles.dadosModal}>ID: </Text>
+              <Text style = {styles.dadosModal}>Categoria: </Text>
+              <Text style = {styles.dadosModal}>Origem: </Text>
+              <Text style = {styles.dadosModal}>Data de validade: </Text>
+
+              <Text>Fazenda</Text>
+              <Text style = {styles.dadosModal}>ID: </Text>
+              <Text style = {styles.dadosModal}>Nome: </Text>
+              <Text style = {styles.dadosModal}>Endereço: </Text>
+              <Text style = {styles.dadosModal}>contato: </Text>
+
+              <Text>Distribuidor</Text>
+              <Text style = {styles.dadosModal}>ID: </Text>
+              <Text style = {styles.dadosModal}>Nome: </Text>
+              <Text style = {styles.dadosModal}>Endereço: </Text>
+              <Text style = {styles.dadosModal}>contato: </Text>
+
+              <Text>Nutrição</Text>
+              <Text style = {styles.dadosModal}>ID: </Text>
+              <Text style = {styles.dadosModal}>Gorduras totais: </Text>
+              <Text style = {styles.dadosModal}>Gordura saturada: </Text>
+              <Text style = {styles.dadosModal}>Gordura trans: </Text>
+              <Text style = {styles.dadosModal}>Colesterol: </Text>
+              <Text style = {styles.dadosModal}>Carboidrato: </Text>
+              <Text style = {styles.dadosModal}>Açucar: </Text>
+              <Text style = {styles.dadosModal}>Proteínas: </Text>
+              <Text style = {styles.dadosModal}>Fibra Alimentar: </Text>
+
+
               <Text style = {styles.ModalButton}onPress = {() =>{
               setModalMilho(false);
               }}>x</Text>
@@ -77,9 +104,9 @@ const Consulta = (props)=>{
 
         <View>        
         <Image source = {imgMilho} style = {styles.logoModal}/>
-          <Text  style = {{marginLeft: 100, fontSize: 16, color: "white"}} onPress = {()=>{
+          <Text  style = {{marginLeft: 85, fontSize: 16, color: "white"}} onPress = {()=>{
             setModalMilho(true)
-          }}>Agúa</Text>
+          }}>Milho</Text>
         </View>
        </View> 
 
@@ -101,7 +128,7 @@ const Consulta = (props)=>{
 
         <View>        
         <Image source = {imgCarne} style = {styles.logoModal}/>
-          <Text  style = {{marginLeft: 100, fontSize: 16, color: "white"}} onPress = {()=>{
+          <Text  style = {{marginLeft: 85, fontSize: 16, color: "white"}} onPress = {()=>{
             setModalCarne(true)
           }}>Carne</Text>
         </View>
@@ -127,9 +154,9 @@ const Consulta = (props)=>{
 
         <View>        
         <Image source = {imgTomate} style = {styles.logoModal}/>
-          <Text  style = {{marginLeft: 100, fontSize: 16, color: "white"}} onPress = {()=>{
+          <Text  style = {{marginLeft: 85, fontSize: 16, color: "white"}} onPress = {()=>{
             setModalTomate(true)
-          }}>Agúa</Text>
+          }}>Tomate</Text>
         </View>
        </View> 
 
@@ -151,9 +178,9 @@ const Consulta = (props)=>{
 
         <View>        
         <Image source = {imgBrocolis} style = {styles.logoModal}/>
-          <Text  style = {{marginLeft: 100, fontSize: 16, color: "white"}} onPress = {()=>{
+          <Text  style = {{marginLeft: 85, fontSize: 16, color: "white"}} onPress = {()=>{
             setModalBrocolis(true)
-          }}>Carne</Text>
+          }}>Brócolis</Text>
         </View>
        </View> 
     </View>
@@ -328,9 +355,9 @@ const styles = StyleSheet.create({
   },
 
   VModal:{
-    backgroundColor: "white",
+    backgroundColor: "#5F6D7A",
     marginHorizontal: 20,
-    height: "50%",
+    height: "80%",
     borderRadius: 9
   },
 
@@ -342,10 +369,10 @@ const styles = StyleSheet.create({
   },
 
   titleModal:{
-    textAlign: "center",
     fontSize: 18,
     fontWeight: 700,
-    marginTop: 5
+    marginTop: 5,
+    textAlign: "center"
   },
 
   dadosModal:{
