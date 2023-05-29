@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, FlatList, Text, TextInput, View, StyleSheet, Image, Modal, ScrollView} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NavigationContainer } from '@react-navigation/native';
@@ -7,16 +7,18 @@ import {AntDesign} from '@expo/vector-icons';
 import axios from 'axios';
 
 
+
 import imgLogin from './assets/hamburguer.png';
 import imgCarne from './assets/carne.jpg';
 import imgMilho from './assets/milho.jpg';
 import imgTomate from './assets/tomate.jpg';
 import imgBrocolis from './assets/brocolis.jpg';
-/*
+
+
 const api = axios.create({
-  baseURL: "link da API"
+  baseURL: 'https://rickandmortyapi.com/documentation/'
 });
-*/
+
 
 const Tab = createBottomTabNavigator();
 const {Navigator, Screen} = Tab;
