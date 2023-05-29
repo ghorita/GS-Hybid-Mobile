@@ -9,7 +9,9 @@ import axios from 'axios';
 
 import imgLogin from './assets/hamburguer.png';
 import imgCarne from './assets/carne.jpg';
-import imgAgua from './assets/agua.jpg';
+import imgMilho from './assets/milho.jpg';
+import imgTomate from './assets/tomate.jpg';
+import imgBrocolis from './assets/brocolis.avif';
 /*
 const api = axios.create({
   baseURL: "link da API"
@@ -22,10 +24,11 @@ const {Navigator, Screen} = Tab;
 
 const Consulta = (props)=>{
 
-  const [modalAgua, setModalAgua] = useState(false);
+  const [modalMilho, setModalMilho] = useState(false);
   const [modalCarne, setModalCarne] = useState(false);
-  const [modalArroz, setModalArroz] = useState(false);
-  const [modalMacarrao, setModalMacarrao] = useState(false);
+  const [modalTomate, setModalTomate] = useState(false);
+  const [modalBrocolis, setModalBrocolis] = useState(false)
+
   
   
 
@@ -57,25 +60,25 @@ const Consulta = (props)=>{
 
     <View style = {{flexDirection: "row"}}>
       <View style = {{marginTop: 10}}>
-        <Modal transparent = {true} visible = {modalAgua} animationType= "slide" onRequestClose={()=>{setModalAgua(false)}}>
+        <Modal transparent = {true} visible = {modalMilho} animationType= "slide" onRequestClose={()=>{setModalMilho(false)}}>
           <View style = {styles.VModal}>
-            <Image source = {imgAgua} style = {styles.logoConsulta}/>
+            <Image source = {imgMilho} style = {styles.logoConsulta}/>
             <Text style = {styles.titleModal}>Água</Text>
             <View style = {{marginTop: 10}}>
               <Text style = {styles.dadosModal}>Fazenda: FIAP </Text>
               <Text style = {styles.dadosModal}>Fábrica: FIAP</Text>
               <Text style = {styles.dadosModal}>Distribuidor: FIAP</Text>
               <Text style = {styles.ModalButton}onPress = {() =>{
-              setModalAgua(false);
+              setModalMilho(false);
               }}>x</Text>
             </View>
           </View>
         </Modal>
 
         <View>        
-        <Image source = {imgAgua} style = {styles.logoModal}/>
+        <Image source = {imgMilho} style = {styles.logoModal}/>
           <Text  style = {{marginLeft: 100, fontSize: 16, color: "white"}} onPress = {()=>{
-            setModalAgua(true)
+            setModalMilho(true)
           }}>Agúa</Text>
         </View>
        </View> 
@@ -107,49 +110,49 @@ const Consulta = (props)=>{
     
     <View style = {{flexDirection: "row"}}>
       <View style = {{marginTop: 10}}>
-        <Modal transparent = {true} visible = {modalAgua} animationType= "slide" onRequestClose={()=>{setModalAgua(false)}}>
+        <Modal transparent = {true} visible = {modalTomate} animationType= "slide" onRequestClose={()=>{setModalTomate(false)}}>
           <View style = {styles.VModal}>
-            <Image source = {imgAgua} style = {styles.logoConsulta}/>
+            <Image source = {imgTomate} style = {styles.logoConsulta}/>
             <Text style = {styles.titleModal}>Água</Text>
             <View style = {{marginTop: 10}}>
               <Text style = {styles.dadosModal}>Fazenda: FIAP </Text>
               <Text style = {styles.dadosModal}>Fábrica: FIAP</Text>
               <Text style = {styles.dadosModal}>Distribuidor: FIAP</Text>
               <Text style = {styles.ModalButton}onPress = {() =>{
-              setModalAgua(false);
+              setModalTomate(false);
               }}>x</Text>
             </View>
           </View>
         </Modal>
 
         <View>        
-        <Image source = {imgAgua} style = {styles.logoModal}/>
+        <Image source = {imgTomate} style = {styles.logoModal}/>
           <Text  style = {{marginLeft: 100, fontSize: 16, color: "white"}} onPress = {()=>{
-            setModalAgua(true)
+            setModalTomate(true)
           }}>Agúa</Text>
         </View>
        </View> 
 
        <View style = {{marginTop: 10}}>
-        <Modal transparent = {true} visible = {modalCarne} animationType= "slide" onRequestClose={()=>{setModalCarne(false)}}>
+        <Modal transparent = {true} visible = {modalBrocolis} animationType= "slide" onRequestClose={()=>{setModalBrocolis(false)}}>
           <View style = {styles.VModal}>
-            <Image source = {imgCarne} style = {styles.logoConsulta}/>
+            <Image source = {imgBrocolis} style = {styles.logoConsulta}/>
             <Text style = {styles.titleModal}>Água</Text>
             <View style = {{marginTop: 10}}>
               <Text style = {styles.dadosModal}>Fazenda: FIAPO </Text>
               <Text style = {styles.dadosModal}>Fábrica: FIAP</Text>
               <Text style = {styles.dadosModal}>Distribuidor: FIAP</Text>
               <Text style = {styles.ModalButton}onPress = {() =>{
-              setModalCarne(false);
+              setModalBrocolis(false);
               }}>x</Text>
             </View>
           </View>
         </Modal>
 
         <View>        
-        <Image source = {imgCarne} style = {styles.logoModal}/>
+        <Image source = {imgBrocolis} style = {styles.logoModal}/>
           <Text  style = {{marginLeft: 100, fontSize: 16, color: "white"}} onPress = {()=>{
-            setModalCarne(true)
+            setModalBrocolis(true)
           }}>Carne</Text>
         </View>
        </View> 
