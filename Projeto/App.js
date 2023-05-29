@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {AntDesign} from '@expo/vector-icons';
 import axios from 'axios';
+import api from './src/services/api';
 
 
 
@@ -15,9 +16,6 @@ import imgTomate from './assets/tomate.jpg';
 import imgBrocolis from './assets/brocolis.jpg';
 
 
-const api = axios.create({
-  baseURL: 'https://rickandmortyapi.com/documentation/'
-});
 
 
 const Tab = createBottomTabNavigator();
@@ -31,7 +29,11 @@ const Consulta = (props)=>{
   const [modalTomate, setModalTomate] = useState(false);
   const [modalBrocolis, setModalBrocolis] = useState(false)
 
-  
+  async function consultaApi(){
+
+    const response = await api.get('documentation');
+    console.log(response);
+  }
   
 
   return(
@@ -186,6 +188,8 @@ const Consulta = (props)=>{
         </View>
        </View> 
     </View>
+
+    <Button title = 'consulta'  onPress={consultaApi}/>
        
 
     </View>
