@@ -4,10 +4,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {AntDesign} from '@expo/vector-icons';
+import axios from 'axios';
 
 
 import imgLogin from './assets/hamburguer.png';
-
+import imgCarne from './assets/carne.jpg';
+import imgAgua from './assets/agua.jpg';
 /*
 const api = axios.create({
   baseURL: "link da API"
@@ -20,7 +22,12 @@ const {Navigator, Screen} = Tab;
 
 const Consulta = (props)=>{
 
-  const [visivel, setVisivel] = useState(false);
+  const [modalAgua, setModalAgua] = useState(false);
+  const [modalCarne, setModalCarne] = useState(false);
+  const [modalArroz, setModalArroz] = useState(false);
+  const [modalMacarrao, setModalMacarrao] = useState(false);
+  
+  
 
   return(
     <View style = {{flex: 1, backgroundColor: "#202025"}}>    
@@ -47,32 +54,107 @@ const Consulta = (props)=>{
                               borderRightWidth: 0, borderLeftWidht: 0}}/>
       </View>
 
+
+    <View style = {{flexDirection: "row"}}>
       <View style = {{marginTop: 10}}>
-        <Modal transparent = {true} visible = {visivel} animationType= "slide" onRequestClose={()=>{setVisivel(false)}}>
+        <Modal transparent = {true} visible = {modalAgua} animationType= "slide" onRequestClose={()=>{setModalAgua(false)}}>
           <View style = {styles.VModal}>
-            <Image source = {imgLogin} style = {styles.logoConsulta}/>
+            <Image source = {imgAgua} style = {styles.logoConsulta}/>
             <Text style = {styles.titleModal}>Água</Text>
             <View style = {{marginTop: 10}}>
               <Text style = {styles.dadosModal}>Fazenda: FIAP </Text>
               <Text style = {styles.dadosModal}>Fábrica: FIAP</Text>
               <Text style = {styles.dadosModal}>Distribuidor: FIAP</Text>
               <Text style = {styles.ModalButton}onPress = {() =>{
-              setVisivel(false);
+              setModalAgua(false);
               }}>x</Text>
             </View>
           </View>
         </Modal>
 
-
         <View>        
-        <Image source = {imgLogin} style = {styles.logoModal}/>
-
+        <Image source = {imgAgua} style = {styles.logoModal}/>
           <Text  style = {{marginLeft: 100, fontSize: 16, color: "white"}} onPress = {()=>{
-            setVisivel(true)
+            setModalAgua(true)
           }}>Agúa</Text>
         </View>
        </View> 
 
+       <View style = {{marginTop: 10}}>
+        <Modal transparent = {true} visible = {modalCarne} animationType= "slide" onRequestClose={()=>{setModalCarne(false)}}>
+          <View style = {styles.VModal}>
+            <Image source = {imgCarne} style = {styles.logoConsulta}/>
+            <Text style = {styles.titleModal}>Água</Text>
+            <View style = {{marginTop: 10}}>
+              <Text style = {styles.dadosModal}>Fazenda: FIAPO </Text>
+              <Text style = {styles.dadosModal}>Fábrica: FIAP</Text>
+              <Text style = {styles.dadosModal}>Distribuidor: FIAP</Text>
+              <Text style = {styles.ModalButton}onPress = {() =>{
+              setModalCarne(false);
+              }}>x</Text>
+            </View>
+          </View>
+        </Modal>
+
+        <View>        
+        <Image source = {imgCarne} style = {styles.logoModal}/>
+          <Text  style = {{marginLeft: 100, fontSize: 16, color: "white"}} onPress = {()=>{
+            setModalCarne(true)
+          }}>Carne</Text>
+        </View>
+       </View> 
+    </View>
+    
+    <View style = {{flexDirection: "row"}}>
+      <View style = {{marginTop: 10}}>
+        <Modal transparent = {true} visible = {modalAgua} animationType= "slide" onRequestClose={()=>{setModalAgua(false)}}>
+          <View style = {styles.VModal}>
+            <Image source = {imgAgua} style = {styles.logoConsulta}/>
+            <Text style = {styles.titleModal}>Água</Text>
+            <View style = {{marginTop: 10}}>
+              <Text style = {styles.dadosModal}>Fazenda: FIAP </Text>
+              <Text style = {styles.dadosModal}>Fábrica: FIAP</Text>
+              <Text style = {styles.dadosModal}>Distribuidor: FIAP</Text>
+              <Text style = {styles.ModalButton}onPress = {() =>{
+              setModalAgua(false);
+              }}>x</Text>
+            </View>
+          </View>
+        </Modal>
+
+        <View>        
+        <Image source = {imgAgua} style = {styles.logoModal}/>
+          <Text  style = {{marginLeft: 100, fontSize: 16, color: "white"}} onPress = {()=>{
+            setModalAgua(true)
+          }}>Agúa</Text>
+        </View>
+       </View> 
+
+       <View style = {{marginTop: 10}}>
+        <Modal transparent = {true} visible = {modalCarne} animationType= "slide" onRequestClose={()=>{setModalCarne(false)}}>
+          <View style = {styles.VModal}>
+            <Image source = {imgCarne} style = {styles.logoConsulta}/>
+            <Text style = {styles.titleModal}>Água</Text>
+            <View style = {{marginTop: 10}}>
+              <Text style = {styles.dadosModal}>Fazenda: FIAPO </Text>
+              <Text style = {styles.dadosModal}>Fábrica: FIAP</Text>
+              <Text style = {styles.dadosModal}>Distribuidor: FIAP</Text>
+              <Text style = {styles.ModalButton}onPress = {() =>{
+              setModalCarne(false);
+              }}>x</Text>
+            </View>
+          </View>
+        </Modal>
+
+        <View>        
+        <Image source = {imgCarne} style = {styles.logoModal}/>
+          <Text  style = {{marginLeft: 100, fontSize: 16, color: "white"}} onPress = {()=>{
+            setModalCarne(true)
+          }}>Carne</Text>
+        </View>
+       </View> 
+    </View>
+       
 
     </View>
   )
@@ -150,7 +232,7 @@ const Telas = (props)=>{
 }
 
 export default function App(){
-  const [logado, setLogado] = useState();
+  const [logado, setLogado] = useState(true);
 
 
   const fazerLogin = ( logged ) =>{
@@ -205,8 +287,8 @@ const styles = StyleSheet.create({
   },
 
   logoModal:{
-    width: 200, 
-    height: 200,
+    width: 180, 
+    height: 180,
     marginLeft: 10,
     borderRadius: 9
   },
