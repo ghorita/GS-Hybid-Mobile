@@ -3,7 +3,7 @@ import { Button, FlatList, Text, TextInput, View, StyleSheet, Image, Modal, Scro
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import {AntDesign, FontAwesome5} from '@expo/vector-icons';
+import {AntDesign, FontAwesome5, MaterialCommunityIcons} from '@expo/vector-icons';
 import axios from 'axios';
 import api from './src/services/api';
 
@@ -365,15 +365,20 @@ const Telas = (props)=>{
                                   },
                                   headerTitleAlign: "center",
                                   headerTintColor: "white",
-                                  headerStatusBarHeight: 1
+                                  headerStatusBarHeight: 1,
+                                  tabBarActiveBackgroundColor: "#4B74C5",
+                                  tabBarActiveTintColor: "white"
+                                
       }}>
-        <Screen name = "Consulta" options = {{tabBarIcon: ({color, size}) =>(
-          <FontAwesome5 name  ="search" color = {color} size = {size}/>
+        <Screen name = "Alimentos" options = {{tabBarIcon: ({color, size}) =>(
+          <MaterialCommunityIcons name  ="food-fork-drink" color = {color} size = {size}/>
         )}}>
           {(props)=><Consulta{...props}/>}
         </Screen>
 
-        <Screen name = "Procura">
+        <Screen name = "Procura" options = {{tabBarIcon: ({color, size})=>(
+          <FontAwesome5 name = "search" color = {color} size = {size}/>
+        )}}>
           {(props)=><Procurar{...props}/>}
         </Screen>
       </Navigator>
