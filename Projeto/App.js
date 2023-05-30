@@ -16,7 +16,8 @@ import imgTomate from './assets/tomate.jpg';
 import imgBrocolis from './assets/brocolis.jpg';
 import imgOvo from './assets/ovos.jpg';
 import imgArroz from './assets/arroz.jpg';
-
+import imgCenoura from './assets/cenoura.jpg';
+import imgBeringela from './assets/beringela.jpg';
 
 
 
@@ -61,7 +62,7 @@ const Procurar = (props) =>{
 }
 
 
-const Consulta = (props)=>{
+const Alimentos = (props)=>{
 
   const [modalMilho, setModalMilho] = useState(false);
   const [modalCarne, setModalCarne] = useState(false);
@@ -69,6 +70,9 @@ const Consulta = (props)=>{
   const [modalBrocolis, setModalBrocolis] = useState(false);
   const [modalOvo, setModalOvo] = useState(false);
   const [modalArroz, setModalArroz] = useState(false);
+  const [modalCenoura, setModalCenoura]= useState(false);
+  const [modalBeringela, setModalBeringela] = useState(false);
+
 
   async function consultaApi(){
 
@@ -401,6 +405,108 @@ const Consulta = (props)=>{
         </View>
        </View> 
     </View>
+
+    <View style = {{flexDirection: "row"}}>
+      <View style = {{marginTop: 10}}>
+        <Modal transparent = {true} visible = {modalCenoura} animationType= "slide" onRequestClose={()=>{setModalCenoura(false)}}>
+          <View style = {styles.VModal}>
+            <Image source = {imgCenoura} style = {styles.logoConsulta}/>
+            <Text style = {styles.titleModal}>Cenoura</Text>
+            <View style = {{marginTop: 10}}>
+            <Text>ALimento</Text>
+              <Text style = {styles.dadosModal}>ID: </Text>
+              <Text style = {styles.dadosModal}>Categoria: </Text>
+              <Text style = {styles.dadosModal}>Origem: </Text>
+              <Text style = {styles.dadosModal}>Data de validade: </Text>
+
+              <Text>Fazenda</Text>
+              <Text style = {styles.dadosModal}>ID: </Text>
+              <Text style = {styles.dadosModal}>Nome: </Text>
+              <Text style = {styles.dadosModal}>Endereço: </Text>
+              <Text style = {styles.dadosModal}>contato: </Text>
+
+              <Text>Distribuidor</Text>
+              <Text style = {styles.dadosModal}>ID: </Text>
+              <Text style = {styles.dadosModal}>Nome: </Text>
+              <Text style = {styles.dadosModal}>Endereço: </Text>
+              <Text style = {styles.dadosModal}>contato: </Text>
+
+              <Text>Nutrição</Text>
+              <Text style = {styles.dadosModal}>ID: </Text>
+              <Text style = {styles.dadosModal}>Gorduras totais: </Text>
+              <Text style = {styles.dadosModal}>Gordura saturada: </Text>
+              <Text style = {styles.dadosModal}>Gordura trans: </Text>
+              <Text style = {styles.dadosModal}>Colesterol: </Text>
+              <Text style = {styles.dadosModal}>Carboidrato: </Text>
+              <Text style = {styles.dadosModal}>Açucar: </Text>
+              <Text style = {styles.dadosModal}>Proteínas: </Text>
+              <Text style = {styles.dadosModal}>Fibra Alimentar: </Text>
+
+              <Text style = {styles.ModalButton}onPress = {() =>{
+              setModalCenoura(false);
+              }}>x</Text>
+            </View>
+          </View>
+        </Modal>
+
+        <View>        
+        <Image source = {imgCenoura} style = {styles.logoModal}/>
+          <Text  style = {{marginLeft: 85, fontSize: 16, color: "white"}} onPress = {()=>{
+            setModalCenoura(true)
+          }}>Cenoura</Text>
+        </View>
+       </View> 
+
+       <View style = {{marginTop: 10}}>
+        <Modal transparent = {true} visible = {modalBeringela} animationType= "slide" onRequestClose={()=>{setModalBeringela(false)}}>
+          <View style = {styles.VModal}>
+            <Image source = {imgBeringela} style = {styles.logoConsulta}/>
+            <Text style = {styles.titleModal}>Beringela</Text>
+            <View style = {{marginTop: 10}}>
+            <Text>ALimento</Text>
+              <Text style = {styles.dadosModal}>ID: </Text>
+              <Text style = {styles.dadosModal}>Categoria: </Text>
+              <Text style = {styles.dadosModal}>Origem: </Text>
+              <Text style = {styles.dadosModal}>Data de validade: </Text>
+
+              <Text>Fazenda</Text>
+              <Text style = {styles.dadosModal}>ID: </Text>
+              <Text style = {styles.dadosModal}>Nome: </Text>
+              <Text style = {styles.dadosModal}>Endereço: </Text>
+              <Text style = {styles.dadosModal}>contato: </Text>
+
+              <Text>Distribuidor</Text>
+              <Text style = {styles.dadosModal}>ID: </Text>
+              <Text style = {styles.dadosModal}>Nome: </Text>
+              <Text style = {styles.dadosModal}>Endereço: </Text>
+              <Text style = {styles.dadosModal}>contato: </Text>
+
+              <Text>Nutrição</Text>
+              <Text style = {styles.dadosModal}>ID: </Text>
+              <Text style = {styles.dadosModal}>Gorduras totais: </Text>
+              <Text style = {styles.dadosModal}>Gordura saturada: </Text>
+              <Text style = {styles.dadosModal}>Gordura trans: </Text>
+              <Text style = {styles.dadosModal}>Colesterol: </Text>
+              <Text style = {styles.dadosModal}>Carboidrato: </Text>
+              <Text style = {styles.dadosModal}>Açucar: </Text>
+              <Text style = {styles.dadosModal}>Proteínas: </Text>
+              <Text style = {styles.dadosModal}>Fibra Alimentar: </Text>
+
+              <Text style = {styles.ModalButton}onPress = {() =>{
+              setModalBeringela(false);
+              }}>x</Text>
+            </View>
+          </View>
+        </Modal>
+
+        <View>        
+        <Image source = {imgBeringela} style = {styles.logoModal}/>
+          <Text  style = {{marginLeft: 85, fontSize: 16, color: "white"}} onPress = {()=>{
+            setModalBeringela(true)
+          }}>Beringela</Text>
+        </View>
+       </View> 
+    </View>
   </ScrollView>
     </View>
   )
@@ -478,7 +584,7 @@ const Telas = (props)=>{
         <Screen name = "Alimentos" options = {{tabBarIcon: ({color, size}) =>(
           <MaterialCommunityIcons name  ="food-fork-drink" color = {color} size = {size}/>
         )}}>
-          {(props)=><Consulta{...props}/>}
+          {(props)=><Alimentos{...props}/>}
         </Screen>
 
         <Screen name = "Procura" options = {{tabBarIcon: ({color, size})=>(
