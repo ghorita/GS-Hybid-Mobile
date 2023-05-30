@@ -8,7 +8,6 @@ import axios from 'axios';
 import api from './src/services/api';
 
 
-
 import imgLogin from './assets/hamburguer.png';
 import imgCarne from './assets/carne.jpg';
 import imgMilho from './assets/milho.jpg';
@@ -54,9 +53,11 @@ const Procurar = (props) =>{
                    style = {{borderWidth: 1, borderColor: "gray",
                               paddingVertical: 15, fontSize: 16,
                               borderRightWidth: 0, borderLeftWidht: 0}}/>
+        <Text style = {styles.buttonProcurar} onPress={consultaApi}>Consultar</Text>
       </View>
 
-       <Button title = 'consulta'  onPress={consultaApi}/>
+
+      
     </View>
   )
 }
@@ -688,6 +689,16 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 16,
     fontWeight: 900
+  },
+
+  buttonProcurar:{
+    backgroundColor: "#4B74C5",
+    textAlign: "center",
+    marginHorizontal: 120,
+    paddingVertical: 10,
+    borderRadius: 9,
+    marginTop: 15,
+    fontWeight: 700
   },
 
   VModal:{
