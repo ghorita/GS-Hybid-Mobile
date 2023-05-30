@@ -14,6 +14,8 @@ import imgCarne from './assets/carne.jpg';
 import imgMilho from './assets/milho.jpg';
 import imgTomate from './assets/tomate.jpg';
 import imgBrocolis from './assets/brocolis.jpg';
+import imgOvo from './assets/ovos.jpg';
+import imgArroz from './assets/arroz.jpg';
 
 
 
@@ -22,6 +24,13 @@ const Tab = createBottomTabNavigator();
 const {Navigator, Screen} = Tab;
 
 const Procurar = (props) =>{
+
+  async function consultaApi(){
+
+    const response = await api.get('documentation');
+    console.log(response);
+  }
+  
   return(
     <View style = {{flex: 1, backgroundColor: "#202025" }}> 
       <View style = {{flexDirection: "row", marginTop: 30}}>
@@ -45,6 +54,8 @@ const Procurar = (props) =>{
                               paddingVertical: 15, fontSize: 16,
                               borderRightWidth: 0, borderLeftWidht: 0}}/>
       </View>
+
+       <Button title = 'consulta'  onPress={consultaApi}/>
     </View>
   )
 }
@@ -55,7 +66,9 @@ const Consulta = (props)=>{
   const [modalMilho, setModalMilho] = useState(false);
   const [modalCarne, setModalCarne] = useState(false);
   const [modalTomate, setModalTomate] = useState(false);
-  const [modalBrocolis, setModalBrocolis] = useState(false)
+  const [modalBrocolis, setModalBrocolis] = useState(false);
+  const [modalOvo, setModalOvo] = useState(false);
+  const [modalArroz, setModalArroz] = useState(false);
 
   async function consultaApi(){
 
@@ -80,16 +93,9 @@ const Consulta = (props)=>{
         <View style = {{marginLeft: 103}}>
           <AntDesign name="hearto" size = {30} color = "white"/>
         </View>
-      </View>   
+      </View>  
 
-      <View style = {{marginTop: 10}}>
-        <TextInput placeholder = "Digite o nome ou QR Code do produto"
-                   style = {{borderWidth: 1, borderColor: "gray",
-                              paddingVertical: 15, fontSize: 16,
-                              borderRightWidth: 0, borderLeftWidht: 0}}/>
-      </View>
-
-
+  <ScrollView>
     <View style = {{flexDirection: "row"}}>
       <View style = {{marginTop: 10}}>
         <Modal transparent = {true} visible = {modalMilho} animationType= "slide" onRequestClose={()=>{setModalMilho(false)}}>
@@ -294,9 +300,108 @@ const Consulta = (props)=>{
        </View> 
     </View>
 
-    <Button title = 'consulta'  onPress={consultaApi}/>
-       
+    <View style = {{flexDirection: "row"}}>
+      <View style = {{marginTop: 10}}>
+        <Modal transparent = {true} visible = {modalOvo} animationType= "slide" onRequestClose={()=>{setModalOvo(false)}}>
+          <View style = {styles.VModal}>
+            <Image source = {imgOvo} style = {styles.logoConsulta}/>
+            <Text style = {styles.titleModal}>Ovo</Text>
+            <View style = {{marginTop: 10}}>
+            <Text>ALimento</Text>
+              <Text style = {styles.dadosModal}>ID: </Text>
+              <Text style = {styles.dadosModal}>Categoria: </Text>
+              <Text style = {styles.dadosModal}>Origem: </Text>
+              <Text style = {styles.dadosModal}>Data de validade: </Text>
 
+              <Text>Fazenda</Text>
+              <Text style = {styles.dadosModal}>ID: </Text>
+              <Text style = {styles.dadosModal}>Nome: </Text>
+              <Text style = {styles.dadosModal}>Endereço: </Text>
+              <Text style = {styles.dadosModal}>contato: </Text>
+
+              <Text>Distribuidor</Text>
+              <Text style = {styles.dadosModal}>ID: </Text>
+              <Text style = {styles.dadosModal}>Nome: </Text>
+              <Text style = {styles.dadosModal}>Endereço: </Text>
+              <Text style = {styles.dadosModal}>contato: </Text>
+
+              <Text>Nutrição</Text>
+              <Text style = {styles.dadosModal}>ID: </Text>
+              <Text style = {styles.dadosModal}>Gorduras totais: </Text>
+              <Text style = {styles.dadosModal}>Gordura saturada: </Text>
+              <Text style = {styles.dadosModal}>Gordura trans: </Text>
+              <Text style = {styles.dadosModal}>Colesterol: </Text>
+              <Text style = {styles.dadosModal}>Carboidrato: </Text>
+              <Text style = {styles.dadosModal}>Açucar: </Text>
+              <Text style = {styles.dadosModal}>Proteínas: </Text>
+              <Text style = {styles.dadosModal}>Fibra Alimentar: </Text>
+
+              <Text style = {styles.ModalButton}onPress = {() =>{
+              setModalOvo(false);
+              }}>x</Text>
+            </View>
+          </View>
+        </Modal>
+
+        <View>        
+        <Image source = {imgOvo} style = {styles.logoModal}/>
+          <Text  style = {{marginLeft: 85, fontSize: 16, color: "white"}} onPress = {()=>{
+            setModalOvo(true)
+          }}>Ovo</Text>
+        </View>
+       </View> 
+
+       <View style = {{marginTop: 10}}>
+        <Modal transparent = {true} visible = {modalArroz} animationType= "slide" onRequestClose={()=>{setModalArroz(false)}}>
+          <View style = {styles.VModal}>
+            <Image source = {imgArroz} style = {styles.logoConsulta}/>
+            <Text style = {styles.titleModal}>Arroz</Text>
+            <View style = {{marginTop: 10}}>
+            <Text>ALimento</Text>
+              <Text style = {styles.dadosModal}>ID: </Text>
+              <Text style = {styles.dadosModal}>Categoria: </Text>
+              <Text style = {styles.dadosModal}>Origem: </Text>
+              <Text style = {styles.dadosModal}>Data de validade: </Text>
+
+              <Text>Fazenda</Text>
+              <Text style = {styles.dadosModal}>ID: </Text>
+              <Text style = {styles.dadosModal}>Nome: </Text>
+              <Text style = {styles.dadosModal}>Endereço: </Text>
+              <Text style = {styles.dadosModal}>contato: </Text>
+
+              <Text>Distribuidor</Text>
+              <Text style = {styles.dadosModal}>ID: </Text>
+              <Text style = {styles.dadosModal}>Nome: </Text>
+              <Text style = {styles.dadosModal}>Endereço: </Text>
+              <Text style = {styles.dadosModal}>contato: </Text>
+
+              <Text>Nutrição</Text>
+              <Text style = {styles.dadosModal}>ID: </Text>
+              <Text style = {styles.dadosModal}>Gorduras totais: </Text>
+              <Text style = {styles.dadosModal}>Gordura saturada: </Text>
+              <Text style = {styles.dadosModal}>Gordura trans: </Text>
+              <Text style = {styles.dadosModal}>Colesterol: </Text>
+              <Text style = {styles.dadosModal}>Carboidrato: </Text>
+              <Text style = {styles.dadosModal}>Açucar: </Text>
+              <Text style = {styles.dadosModal}>Proteínas: </Text>
+              <Text style = {styles.dadosModal}>Fibra Alimentar: </Text>
+
+              <Text style = {styles.ModalButton}onPress = {() =>{
+              setModalArroz(false);
+              }}>x</Text>
+            </View>
+          </View>
+        </Modal>
+
+        <View>        
+        <Image source = {imgArroz} style = {styles.logoModal}/>
+          <Text  style = {{marginLeft: 85, fontSize: 16, color: "white"}} onPress = {()=>{
+            setModalArroz(true)
+          }}>Arroz</Text>
+        </View>
+       </View> 
+    </View>
+  </ScrollView>
     </View>
   )
 }
