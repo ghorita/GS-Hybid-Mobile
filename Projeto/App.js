@@ -3,7 +3,7 @@ import { Button, FlatList, Text, TextInput, View, StyleSheet, Image, Modal, Scro
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import {AntDesign} from '@expo/vector-icons';
+import {AntDesign, FontAwesome5} from '@expo/vector-icons';
 import axios from 'axios';
 import api from './src/services/api';
 
@@ -20,6 +20,34 @@ import imgBrocolis from './assets/brocolis.jpg';
 
 const Tab = createBottomTabNavigator();
 const {Navigator, Screen} = Tab;
+
+const Procurar = (props) =>{
+  return(
+    <View style = {{flex: 1, backgroundColor: "#202025" }}> 
+      <View style = {{flexDirection: "row", marginTop: 30}}>
+        <View>
+          <AntDesign name = "user" size = {30} color = "white"/>
+        </View>
+
+        <View style = {{flexDirection: "row", alignItems:"center", marginLeft: 100}}>
+          <Image source = {imgLogin} style = {styles.logoConsulta}/>
+          <Text style= {{color: "white", textAlign: "center", fontSize: 16, fontWeight: 700}}>TechTitan</Text>  
+        </View>
+
+        <View style = {{marginLeft: 103}}>
+          <AntDesign name="hearto" size = {30} color = "white"/>
+        </View>
+      </View>   
+
+      <View style = {{marginTop: 10}}>
+        <TextInput placeholder = "Digite o nome ou QR Code do produto"
+                   style = {{borderWidth: 1, borderColor: "gray",
+                              paddingVertical: 15, fontSize: 16,
+                              borderRightWidth: 0, borderLeftWidht: 0}}/>
+      </View>
+    </View>
+  )
+}
 
 
 const Consulta = (props)=>{
@@ -98,7 +126,6 @@ const Consulta = (props)=>{
               <Text style = {styles.dadosModal}>Proteínas: </Text>
               <Text style = {styles.dadosModal}>Fibra Alimentar: </Text>
 
-
               <Text style = {styles.ModalButton}onPress = {() =>{
               setModalMilho(false);
               }}>x</Text>
@@ -118,11 +145,37 @@ const Consulta = (props)=>{
         <Modal transparent = {true} visible = {modalCarne} animationType= "slide" onRequestClose={()=>{setModalCarne(false)}}>
           <View style = {styles.VModal}>
             <Image source = {imgCarne} style = {styles.logoConsulta}/>
-            <Text style = {styles.titleModal}>Água</Text>
+            <Text style = {styles.titleModal}>Carne</Text>
             <View style = {{marginTop: 10}}>
-              <Text style = {styles.dadosModal}>Fazenda: FIAPO </Text>
-              <Text style = {styles.dadosModal}>Fábrica: FIAP</Text>
-              <Text style = {styles.dadosModal}>Distribuidor: FIAP</Text>
+            <Text>ALimento</Text>
+              <Text style = {styles.dadosModal}>ID: </Text>
+              <Text style = {styles.dadosModal}>Categoria: </Text>
+              <Text style = {styles.dadosModal}>Origem: </Text>
+              <Text style = {styles.dadosModal}>Data de validade: </Text>
+
+              <Text>Fazenda</Text>
+              <Text style = {styles.dadosModal}>ID: </Text>
+              <Text style = {styles.dadosModal}>Nome: </Text>
+              <Text style = {styles.dadosModal}>Endereço: </Text>
+              <Text style = {styles.dadosModal}>contato: </Text>
+
+              <Text>Distribuidor</Text>
+              <Text style = {styles.dadosModal}>ID: </Text>
+              <Text style = {styles.dadosModal}>Nome: </Text>
+              <Text style = {styles.dadosModal}>Endereço: </Text>
+              <Text style = {styles.dadosModal}>contato: </Text>
+
+              <Text>Nutrição</Text>
+              <Text style = {styles.dadosModal}>ID: </Text>
+              <Text style = {styles.dadosModal}>Gorduras totais: </Text>
+              <Text style = {styles.dadosModal}>Gordura saturada: </Text>
+              <Text style = {styles.dadosModal}>Gordura trans: </Text>
+              <Text style = {styles.dadosModal}>Colesterol: </Text>
+              <Text style = {styles.dadosModal}>Carboidrato: </Text>
+              <Text style = {styles.dadosModal}>Açucar: </Text>
+              <Text style = {styles.dadosModal}>Proteínas: </Text>
+              <Text style = {styles.dadosModal}>Fibra Alimentar: </Text>
+
               <Text style = {styles.ModalButton}onPress = {() =>{
               setModalCarne(false);
               }}>x</Text>
@@ -144,11 +197,37 @@ const Consulta = (props)=>{
         <Modal transparent = {true} visible = {modalTomate} animationType= "slide" onRequestClose={()=>{setModalTomate(false)}}>
           <View style = {styles.VModal}>
             <Image source = {imgTomate} style = {styles.logoConsulta}/>
-            <Text style = {styles.titleModal}>Água</Text>
+            <Text style = {styles.titleModal}>Tomate</Text>
             <View style = {{marginTop: 10}}>
-              <Text style = {styles.dadosModal}>Fazenda: FIAP </Text>
-              <Text style = {styles.dadosModal}>Fábrica: FIAP</Text>
-              <Text style = {styles.dadosModal}>Distribuidor: FIAP</Text>
+            <Text>ALimento</Text>
+              <Text style = {styles.dadosModal}>ID: </Text>
+              <Text style = {styles.dadosModal}>Categoria: </Text>
+              <Text style = {styles.dadosModal}>Origem: </Text>
+              <Text style = {styles.dadosModal}>Data de validade: </Text>
+
+              <Text>Fazenda</Text>
+              <Text style = {styles.dadosModal}>ID: </Text>
+              <Text style = {styles.dadosModal}>Nome: </Text>
+              <Text style = {styles.dadosModal}>Endereço: </Text>
+              <Text style = {styles.dadosModal}>contato: </Text>
+
+              <Text>Distribuidor</Text>
+              <Text style = {styles.dadosModal}>ID: </Text>
+              <Text style = {styles.dadosModal}>Nome: </Text>
+              <Text style = {styles.dadosModal}>Endereço: </Text>
+              <Text style = {styles.dadosModal}>contato: </Text>
+
+              <Text>Nutrição</Text>
+              <Text style = {styles.dadosModal}>ID: </Text>
+              <Text style = {styles.dadosModal}>Gorduras totais: </Text>
+              <Text style = {styles.dadosModal}>Gordura saturada: </Text>
+              <Text style = {styles.dadosModal}>Gordura trans: </Text>
+              <Text style = {styles.dadosModal}>Colesterol: </Text>
+              <Text style = {styles.dadosModal}>Carboidrato: </Text>
+              <Text style = {styles.dadosModal}>Açucar: </Text>
+              <Text style = {styles.dadosModal}>Proteínas: </Text>
+              <Text style = {styles.dadosModal}>Fibra Alimentar: </Text>
+
               <Text style = {styles.ModalButton}onPress = {() =>{
               setModalTomate(false);
               }}>x</Text>
@@ -168,11 +247,37 @@ const Consulta = (props)=>{
         <Modal transparent = {true} visible = {modalBrocolis} animationType= "slide" onRequestClose={()=>{setModalBrocolis(false)}}>
           <View style = {styles.VModal}>
             <Image source = {imgBrocolis} style = {styles.logoConsulta}/>
-            <Text style = {styles.titleModal}>Água</Text>
+            <Text style = {styles.titleModal}>Brócolis</Text>
             <View style = {{marginTop: 10}}>
-              <Text style = {styles.dadosModal}>Fazenda: FIAPO </Text>
-              <Text style = {styles.dadosModal}>Fábrica: FIAP</Text>
-              <Text style = {styles.dadosModal}>Distribuidor: FIAP</Text>
+            <Text>ALimento</Text>
+              <Text style = {styles.dadosModal}>ID: </Text>
+              <Text style = {styles.dadosModal}>Categoria: </Text>
+              <Text style = {styles.dadosModal}>Origem: </Text>
+              <Text style = {styles.dadosModal}>Data de validade: </Text>
+
+              <Text>Fazenda</Text>
+              <Text style = {styles.dadosModal}>ID: </Text>
+              <Text style = {styles.dadosModal}>Nome: </Text>
+              <Text style = {styles.dadosModal}>Endereço: </Text>
+              <Text style = {styles.dadosModal}>contato: </Text>
+
+              <Text>Distribuidor</Text>
+              <Text style = {styles.dadosModal}>ID: </Text>
+              <Text style = {styles.dadosModal}>Nome: </Text>
+              <Text style = {styles.dadosModal}>Endereço: </Text>
+              <Text style = {styles.dadosModal}>contato: </Text>
+
+              <Text>Nutrição</Text>
+              <Text style = {styles.dadosModal}>ID: </Text>
+              <Text style = {styles.dadosModal}>Gorduras totais: </Text>
+              <Text style = {styles.dadosModal}>Gordura saturada: </Text>
+              <Text style = {styles.dadosModal}>Gordura trans: </Text>
+              <Text style = {styles.dadosModal}>Colesterol: </Text>
+              <Text style = {styles.dadosModal}>Carboidrato: </Text>
+              <Text style = {styles.dadosModal}>Açucar: </Text>
+              <Text style = {styles.dadosModal}>Proteínas: </Text>
+              <Text style = {styles.dadosModal}>Fibra Alimentar: </Text>
+
               <Text style = {styles.ModalButton}onPress = {() =>{
               setModalBrocolis(false);
               }}>x</Text>
@@ -253,14 +358,23 @@ const Login = (props) =>{
 const Telas = (props)=>{
   return(
     <View style = {{flex: 1}}>
-      <Text>TESTE</Text>
-      <Navigator>
-        <Screen name = "Registro">
-          {(props)=><Registro{...props}/>}
+      <Navigator screenOptions = {{headerStyle:{ 
+                                    backgroundColor: "#4B74C5"},
+                                  headerTitleStyle:{
+                                    fontWeight: "bold"
+                                  },
+                                  headerTitleAlign: "center",
+                                  headerTintColor: "white",
+                                  headerStatusBarHeight: 1
+      }}>
+        <Screen name = "Consulta" options = {{tabBarIcon: ({color, size}) =>(
+          <FontAwesome5 name  ="search" color = {color} size = {size}/>
+        )}}>
+          {(props)=><Consulta{...props}/>}
         </Screen>
 
-        <Screen name = "Login">
-          {(props)=><Login{...props}/>}
+        <Screen name = "Procura">
+          {(props)=><Procurar{...props}/>}
         </Screen>
       </Navigator>
     </View>
@@ -278,7 +392,7 @@ export default function App(){
   return(
     <NavigationContainer>
       <View style = {{flex: 1}}>
-      {logado ? <Consulta/> : 
+      {logado ? <Telas/> : 
                   <Login onLogar={fazerLogin}/>}
       </View>
     </NavigationContainer>
