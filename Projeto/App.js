@@ -5,8 +5,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {AntDesign, FontAwesome5, MaterialCommunityIcons} from '@expo/vector-icons';
 import axios from 'axios';
-import api from './src/services/api';
-
 
 import imgLogin from './assets/hamburguer.png';
 import imgCarne from './assets/carne.jpg';
@@ -17,8 +15,11 @@ import imgOvo from './assets/ovos.jpg';
 import imgArroz from './assets/arroz.jpg';
 import imgCenoura from './assets/cenoura.jpg';
 import imgBeringela from './assets/beringela.jpg';
+import imgLogo from './assets/logo.png';
 
-
+const api = axios.create({
+  baseURL: "https://viacep.com.br/ws/"
+});
 
 const Tab = createBottomTabNavigator();
 const {Navigator, Screen} = Tab;
@@ -39,7 +40,7 @@ const Procurar = (props) =>{
         </View>
 
         <View style = {{flexDirection: "row", alignItems:"center", marginLeft: 100}}>
-          <Image source = {imgLogin} style = {styles.logoConsulta}/>
+          <Image source = {imgLogo} style = {styles.logoConsulta}/>
           <Text style= {{color: "white", textAlign: "center", fontSize: 16, fontWeight: 700}}>TechTitan</Text>  
         </View>
 
@@ -520,7 +521,7 @@ const Login = (props) =>{
   return(
 
     <View style = {{flex: 1, backgroundColor: "#202025"}}>
-      <Image source = {imgLogin} style = {styles.logoLogin}/>
+      <Image source = {imgLogo} style = {styles.logoLogin}/>
 
       <View style = {{marginTop: 10}}>
         <TextInput placeholder = "Email" style = {styles.inputLogin} value = {email} onChangeText = {setEmail}/>
@@ -599,7 +600,7 @@ const Telas = (props)=>{
 }
 
 export default function App(){
-  const [logado, setLogado] = useState(true);
+  const [logado, setLogado] = useState();
 
 
   const fazerLogin = ( logged ) =>{
