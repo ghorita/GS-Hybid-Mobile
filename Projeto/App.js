@@ -25,7 +25,7 @@ const Tab = createBottomTabNavigator();
 const {Navigator, Screen} = Tab;
 
 const Procurar = (props) =>{
-
+ 
   async function consultaApi(){
 
     const response = await api.get('documentation');
@@ -75,14 +75,7 @@ const Alimentos = (props)=>{
   const [modalCenoura, setModalCenoura]= useState(false);
   const [modalBeringela, setModalBeringela] = useState(false);
 
-
-  async function consultaApi(){
-
-    const response = await api.get('documentation');
-    console.log(response);
-  }
   
-
   return(
     <View style = {{flex: 1, backgroundColor: "#202025"}}>    
 
@@ -92,7 +85,7 @@ const Alimentos = (props)=>{
         </View>
 
         <View style = {{flexDirection: "row", alignItems:"center", marginLeft: 100}}>
-          <Image source = {imgLogin} style = {styles.logoConsulta}/>
+          <Image source = {imgLogo} style = {styles.logoConsulta}/>
           <Text style= {{color: "white", textAlign: "center", fontSize: 16, fontWeight: 700}}>TechTitan</Text>  
         </View>
 
