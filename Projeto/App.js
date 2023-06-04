@@ -6,7 +6,6 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {AntDesign, FontAwesome5, MaterialCommunityIcons} from '@expo/vector-icons';
 import axios from 'axios';
 
-import imgLogin from './assets/hamburguer.png';
 import imgCarne from './assets/carne.jpg';
 import imgMilho from './assets/milho.jpg';
 import imgTomate from './assets/tomate.jpg';
@@ -18,18 +17,19 @@ import imgBeringela from './assets/beringela.jpg';
 import imgLogo from './assets/logo.png';
 
 const api = axios.create({
-  baseURL: "https://viacep.com.br/ws/"
+  baseURL: "https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.9.2/apache-maven-3.9.2-bin.zip"
 });
 
 const Tab = createBottomTabNavigator();
 const {Navigator, Screen} = Tab;
 
 const Procurar = (props) =>{
+
+  const [consulta, setConsulta] = useState("");
  
   async function consultaApi(){
-
-    const response = await api.get('documentation');
-    console.log(response);
+    const {data} = await api.get('https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.9.2/apache-maven-3.9.2-bin.zip');
+    console.log(data);
   }
   
   return(
@@ -593,7 +593,7 @@ const Telas = (props)=>{
 }
 
 export default function App(){
-  const [logado, setLogado] = useState();
+  const [logado, setLogado] = useState(true);
 
 
   const fazerLogin = ( logged ) =>{
