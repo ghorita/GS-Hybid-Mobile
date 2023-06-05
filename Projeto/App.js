@@ -361,33 +361,39 @@ const Alimentos = (props)=>{
             <Text style = {styles.titleModal}>Ovo</Text>
             <View style = {{marginTop: 10}}>
             <Text>ALimento</Text>
-              <Text style = {styles.dadosModal}>ID: </Text>
-              <Text style = {styles.dadosModal}>Categoria: </Text>
-              <Text style = {styles.dadosModal}>Origem: </Text>
-              <Text style = {styles.dadosModal}>Data de validade: </Text>
+              <Text style = {styles.dadosModal}>ID: 5</Text>
+              <Text style = {styles.dadosModal}>Categoria: Animais</Text>
+              <Text style = {styles.dadosModal}>Origem: Galinhas</Text>
+              <Text style = {styles.dadosModal}>Descrição: Os ovos são um 
+              tipo de proteína que vem das galinhas. Eles são uma boa fonte
+               de proteínas, vitaminas e minerais. Os ovos podem ser consumidos
+               sozinhos ou podem ser usados ​​em uma variedade de pratos, como
+               omeletes, ovos mexidos e quiches.</Text>
 
               <Text>Fazenda</Text>
-              <Text style = {styles.dadosModal}>ID: </Text>
-              <Text style = {styles.dadosModal}>Nome: </Text>
-              <Text style = {styles.dadosModal}>Endereço: </Text>
-              <Text style = {styles.dadosModal}>contato: </Text>
+              <Text style = {styles.dadosModal}>ID: 5</Text>
+              <Text style = {styles.dadosModal}>Nome: Fazenda Vista Alegre</Text>
+              <Text style = {styles.dadosModal}>Endereço: Estrada do Sertão, KM 30, Zona Rural</Text>
+              <Text style = {styles.dadosModal}>contato: Lucas Almeida - (XX) XXXX-XXXX</Text>
 
               <Text>Distribuidor</Text>
-              <Text style = {styles.dadosModal}>ID: </Text>
-              <Text style = {styles.dadosModal}>Nome: </Text>
-              <Text style = {styles.dadosModal}>Endereço: </Text>
-              <Text style = {styles.dadosModal}>contato: </Text>
+              <Text style = {styles.dadosModal}>ID: 5</Text>
+              <Text style = {styles.dadosModal}>Nome: Distribuidora de Alimentos Sabores do Mundo</Text>
+              <Text style = {styles.dadosModal}>Endereço: Rua das Vitaminas, 654, Parque Industrial</Text>
+              <Text style = {styles.dadosModal}>contato: Sofia Mendes - (XX) XXXX-XXXX</Text>
 
               <Text>Nutrição</Text>
-              <Text style = {styles.dadosModal}>ID: </Text>
-              <Text style = {styles.dadosModal}>Gorduras totais: </Text>
-              <Text style = {styles.dadosModal}>Gordura saturada: </Text>
-              <Text style = {styles.dadosModal}>Gordura trans: </Text>
-              <Text style = {styles.dadosModal}>Colesterol: </Text>
-              <Text style = {styles.dadosModal}>Carboidrato: </Text>
-              <Text style = {styles.dadosModal}>Açucar: </Text>
-              <Text style = {styles.dadosModal}>Proteínas: </Text>
-              <Text style = {styles.dadosModal}>Fibra Alimentar: </Text>
+              <Text style = {styles.dadosModal}>ID: 5</Text>
+              <Text style = {styles.dadosModal}>Calorias: 155</Text>
+              <Text style = {styles.dadosModal}>Gorduras totais: 11</Text>
+              <Text style = {styles.dadosModal}>Gordura saturada: 3.3</Text>
+              <Text style = {styles.dadosModal}>Gordura trans: 0</Text>
+              <Text style = {styles.dadosModal}>Colesterol: 373</Text>
+              <Text style = {styles.dadosModal}>Carboidrato: 1.1</Text>
+              <Text style = {styles.dadosModal}>Açucar: 1.1</Text>
+              <Text style = {styles.dadosModal}>Proteínas: 13</Text>
+              <Text style = {styles.dadosModal}>Fibra Alimentar: 0 </Text>
+              <Text style = {styles.dadosModal}>Sódio: 124 </Text>
 
               <Text style = {styles.ModalButton}onPress = {() =>{
               setModalOvo(false);
@@ -411,33 +417,38 @@ const Alimentos = (props)=>{
             <Text style = {styles.titleModal}>Arroz</Text>
             <View style = {{marginTop: 10}}>
             <Text>ALimento</Text>
-              <Text style = {styles.dadosModal}>ID: </Text>
-              <Text style = {styles.dadosModal}>Categoria: </Text>
-              <Text style = {styles.dadosModal}>Origem: </Text>
-              <Text style = {styles.dadosModal}>Data de validade: </Text>
+              <Text style = {styles.dadosModal}>ID: 6</Text>
+              <Text style = {styles.dadosModal}>Categoria: Cereais</Text>
+              <Text style = {styles.dadosModal}>Origem: Plantação Ágricola</Text>
+              <Text style = {styles.dadosModal}>Descrição: O arroz é um tipo de grão
+               originário da Ásia. É uma boa fonte de carboidratos e fibras. O arroz
+               pode ser consumido sozinho ou em diversos pratos, como sushi, risoto
+               e arroz frito.</Text>
 
               <Text>Fazenda</Text>
-              <Text style = {styles.dadosModal}>ID: </Text>
-              <Text style = {styles.dadosModal}>Nome: </Text>
-              <Text style = {styles.dadosModal}>Endereço: </Text>
-              <Text style = {styles.dadosModal}>contato: </Text>
+              <Text style = {styles.dadosModal}>ID: 6</Text>
+              <Text style = {styles.dadosModal}>Nome: Fazenda Boa Esperança</Text>
+              <Text style = {styles.dadosModal}>Endereço: Fazenda do Sol, S/N, Zona Rural</Text>
+              <Text style = {styles.dadosModal}>contato: Laura Nunes - (XX) XXXX-XXXX</Text>
 
               <Text>Distribuidor</Text>
-              <Text style = {styles.dadosModal}>ID: </Text>
-              <Text style = {styles.dadosModal}>Nome: </Text>
-              <Text style = {styles.dadosModal}>Endereço: </Text>
-              <Text style = {styles.dadosModal}>contato: </Text>
+              <Text style = {styles.dadosModal}>ID: 6</Text>
+              <Text style = {styles.dadosModal}>Nome: Distribuidora de Alimentos Primeira Escolha</Text>
+              <Text style = {styles.dadosModal}>Endereço: Rua dos Temperos, 321, Centro</Text>
+              <Text style = {styles.dadosModal}>contato: Rafaela Santos - (XX) XXXX-XXXX</Text>
 
               <Text>Nutrição</Text>
-              <Text style = {styles.dadosModal}>ID: </Text>
-              <Text style = {styles.dadosModal}>Gorduras totais: </Text>
-              <Text style = {styles.dadosModal}>Gordura saturada: </Text>
-              <Text style = {styles.dadosModal}>Gordura trans: </Text>
-              <Text style = {styles.dadosModal}>Colesterol: </Text>
-              <Text style = {styles.dadosModal}>Carboidrato: </Text>
-              <Text style = {styles.dadosModal}>Açucar: </Text>
-              <Text style = {styles.dadosModal}>Proteínas: </Text>
-              <Text style = {styles.dadosModal}>Fibra Alimentar: </Text>
+              <Text style = {styles.dadosModal}>ID: 6</Text>
+              <Text style = {styles.dadosModal}>Calorias: 130</Text>
+              <Text style = {styles.dadosModal}>Gorduras totais: 0.3</Text>
+              <Text style = {styles.dadosModal}>Gordura saturada: 0.1</Text>
+              <Text style = {styles.dadosModal}>Gordura trans: 0</Text>
+              <Text style = {styles.dadosModal}>Colesterol: 0</Text>
+              <Text style = {styles.dadosModal}>Carboidrato: 28</Text>
+              <Text style = {styles.dadosModal}>Açucar: 0</Text>
+              <Text style = {styles.dadosModal}>Proteínas: 2.7</Text>
+              <Text style = {styles.dadosModal}>Fibra Alimentar: 0.6</Text>
+              <Text style = {styles.dadosModal}>Sódio: 1</Text>
 
               <Text style = {styles.ModalButton}onPress = {() =>{
               setModalArroz(false);
@@ -513,33 +524,38 @@ const Alimentos = (props)=>{
             <Text style = {styles.titleModal}>Beringela</Text>
             <View style = {{marginTop: 10}}>
             <Text>ALimento</Text>
-              <Text style = {styles.dadosModal}>ID: </Text>
-              <Text style = {styles.dadosModal}>Categoria: </Text>
-              <Text style = {styles.dadosModal}>Origem: </Text>
-              <Text style = {styles.dadosModal}>Data de validade: </Text>
+              <Text style = {styles.dadosModal}>ID: 7</Text>
+              <Text style = {styles.dadosModal}>Categoria: Legumes</Text>
+              <Text style = {styles.dadosModal}>Origem: Plantação Ágricola</Text>
+              <Text style = {styles.dadosModal}>Descrição: A berinjela é um tipo de
+               legume originário da Índia. É uma boa fonte de vitaminas C e K, além
+               de fibras. A berinjela pode ser consumida sozinha ou em uma variedade
+               de pratos, como berinjela ao parmesão, baba ghanoush e moussaka.</Text>
 
               <Text>Fazenda</Text>
-              <Text style = {styles.dadosModal}>ID: </Text>
-              <Text style = {styles.dadosModal}>Nome: </Text>
-              <Text style = {styles.dadosModal}>Endereço: </Text>
-              <Text style = {styles.dadosModal}>contato: </Text>
+              <Text style = {styles.dadosModal}>ID: 7</Text>
+              <Text style = {styles.dadosModal}>Nome: Fazenda Estrela do Norte</Text>
+              <Text style = {styles.dadosModal}>Endereço: Sítio da Paz, S/N, Zona Rural</Text>
+              <Text style = {styles.dadosModal}>contato: Gabriel Costa - (XX) XXXX-XXXX</Text>
 
               <Text>Distribuidor</Text>
-              <Text style = {styles.dadosModal}>ID: </Text>
-              <Text style = {styles.dadosModal}>Nome: </Text>
-              <Text style = {styles.dadosModal}>Endereço: </Text>
-              <Text style = {styles.dadosModal}>contato: </Text>
+              <Text style = {styles.dadosModal}>ID: 7</Text>
+              <Text style = {styles.dadosModal}>Nome: Distribuidora Alimentar Sabor & Qualidade</Text>
+              <Text style = {styles.dadosModal}>Endereço: Avenida da Qualidade, 246, Bairro Novo</Text>
+              <Text style = {styles.dadosModal}>contato: Camila Mendonça - (XX) XXXX-XXXX</Text>
 
               <Text>Nutrição</Text>
-              <Text style = {styles.dadosModal}>ID: </Text>
-              <Text style = {styles.dadosModal}>Gorduras totais: </Text>
-              <Text style = {styles.dadosModal}>Gordura saturada: </Text>
-              <Text style = {styles.dadosModal}>Gordura trans: </Text>
-              <Text style = {styles.dadosModal}>Colesterol: </Text>
-              <Text style = {styles.dadosModal}>Carboidrato: </Text>
-              <Text style = {styles.dadosModal}>Açucar: </Text>
-              <Text style = {styles.dadosModal}>Proteínas: </Text>
-              <Text style = {styles.dadosModal}>Fibra Alimentar: </Text>
+              <Text style = {styles.dadosModal}>ID: 7</Text>
+              <Text style = {styles.dadosModal}>Calorias: 25</Text>
+              <Text style = {styles.dadosModal}>Gorduras totais: 0.2</Text>
+              <Text style = {styles.dadosModal}>Gordura saturada: 0</Text>
+              <Text style = {styles.dadosModal}>Gordura trans: 0</Text>
+              <Text style = {styles.dadosModal}>Colesterol: 0</Text>
+              <Text style = {styles.dadosModal}>Carboidrato: 6</Text>
+              <Text style = {styles.dadosModal}>Açucar: 2.2</Text>
+              <Text style = {styles.dadosModal}>Proteínas: 2.7</Text>
+              <Text style = {styles.dadosModal}>Fibra Alimentar: 0.6</Text>
+              <Text style = {styles.dadosModal}>Sódio: 2</Text>
 
               <Text style = {styles.ModalButton}onPress = {() =>{
               setModalBeringela(false);
