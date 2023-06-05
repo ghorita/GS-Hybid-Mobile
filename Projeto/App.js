@@ -133,11 +133,12 @@ const Alimentos = (props)=>{
     <View style = {{flexDirection: "row"}}>
       <View style = {{marginTop: 10}}>
         <Modal transparent = {true} visible = {modalMilho} animationType= "slide" onRequestClose={()=>{setModalMilho(false)}}>
+          <ScrollView>
           <View style = {styles.VModal}>
             <Image source = {imgMilho} style = {styles.logoConsulta}/>
             <Text style = {styles.titleModal}>Milho</Text>
             <View style = {{marginTop: 10}}>
-              <Text>ALimento</Text>
+              <Text style = {styles.categoriaModal}>Alimento</Text>
               <Text style = {styles.dadosModal}>ID: 1 </Text>
               <Text style = {styles.dadosModal}>Categoria: Cereais </Text>
               <Text style = {styles.dadosModal}>Origem: Plantação Ágricola </Text>
@@ -146,19 +147,19 @@ const Alimentos = (props)=>{
                e vitaminas. O milho pode ser comido sozinho ou em uma variedade de pratos,
                 como pão de milho, sopa de milho e espiga de milho. </Text>
 
-              <Text>Fazenda</Text>
+              <Text style = {styles.titleModal}>Fazenda</Text>
               <Text style = {styles.dadosModal}>ID: 1</Text>
               <Text style = {styles.dadosModal}>Nome: Fazenda BoaVista</Text>
               <Text style = {styles.dadosModal}>Endereço: Estrada da Esperança, S/N, Zona Rural</Text>
               <Text style = {styles.dadosModal}>contato: João da Silva - (XX) XXXX-XXXX</Text>
 
-              <Text>Distribuidor</Text>
+              <Text style = {styles.titleModal}>Distribuidor</Text>
               <Text style = {styles.dadosModal}>ID: 1</Text>
               <Text style = {styles.dadosModal}>Nome: Distribuidora Alimentar Sabor & Qualidade</Text>
               <Text style = {styles.dadosModal}>Endereço: Rua dos Sabores, 123, Centro</Text>
               <Text style = {styles.dadosModal}>contato: Maria Lurdes - (XX) XXXX-XXXX</Text>
 
-              <Text>Nutrição</Text>
+              <Text style = {styles.titleModal}>Nutrição</Text>
               <Text style = {styles.dadosModal}>ID: 1</Text>
               <Text style = {styles.dadosModal}>Calorias: 96</Text>
               <Text style = {styles.dadosModal}>Gorduras totais: 1</Text>
@@ -176,6 +177,7 @@ const Alimentos = (props)=>{
               }}>x</Text>
             </View>
           </View>
+          </ScrollView>
         </Modal>
 
         <View>        
@@ -188,11 +190,12 @@ const Alimentos = (props)=>{
 
        <View style = {{marginTop: 10}}>
         <Modal transparent = {true} visible = {modalCarne} animationType= "slide" onRequestClose={()=>{setModalCarne(false)}}>
+          <ScrollView>
           <View style = {styles.VModal}>
             <Image source = {imgCarne} style = {styles.logoConsulta}/>
             <Text style = {styles.titleModal}>Carne Vermelha</Text>
             <View style = {{marginTop: 10}}>
-            <Text>ALimento</Text>
+            <Text  style = {styles.titleModal}>Alimento</Text>
               <Text style = {styles.dadosModal}>ID: 2</Text>
               <Text style = {styles.dadosModal}>Categoria: Carnes</Text>
               <Text style = {styles.dadosModal}>Origem: Pecuaria</Text>
@@ -201,19 +204,19 @@ const Alimentos = (props)=>{
                ferro e zinco. A carne pode ser consumida sozinha ou pode ser usada
                em uma variedade de pratos, como hambúrgueres, bifes e nuggets de frango.</Text>
 
-              <Text>Fazenda</Text>
+              <Text style = {styles.titleModal}>Fazenda</Text>
               <Text style = {styles.dadosModal}>ID: 2</Text>
               <Text style = {styles.dadosModal}>Nome: Fazenda Primavera</Text>
               <Text style = {styles.dadosModal}>Endereço: Rodovia do Cerrado, KM 50, Zona Rural</Text>
               <Text style = {styles.dadosModal}>contato: Maria Oliveira - (XX) XXXX-XXXX</Text>
 
-              <Text>Distribuidor</Text>
+              <Text style = {styles.titleModal}>Distribuidor</Text>
               <Text style = {styles.dadosModal}>ID: 2</Text>
               <Text style = {styles.dadosModal}>Nome: Distribuidora Gourmet Bella Vita</Text>
               <Text style = {styles.dadosModal}>Endereço: Avenida da Saúde, 456, Vila Verde</Text>
               <Text style = {styles.dadosModal}>contato: Pedro Santos - (XX) XXXX-XXXX</Text>
 
-              <Text>Nutrição</Text>
+              <Text style = {styles.titleModal}>Nutrição</Text>
               <Text style = {styles.dadosModal}>ID: </Text>
               <Text style = {styles.dadosModal}>Calorias: 250 </Text>
               <Text style = {styles.dadosModal}>Gorduras totais: 17</Text>
@@ -230,6 +233,7 @@ const Alimentos = (props)=>{
               }}>x</Text>
             </View>
           </View>
+          </ScrollView>
         </Modal>
 
         <View>        
@@ -244,11 +248,12 @@ const Alimentos = (props)=>{
     <View style = {{flexDirection: "row"}}>
       <View style = {{marginTop: 10}}>
         <Modal transparent = {true} visible = {modalTomate} animationType= "slide" onRequestClose={()=>{setModalTomate(false)}}>
+          <ScrollView>
           <View style = {styles.VModal}>
             <Image source = {imgTomate} style = {styles.logoConsulta}/>
             <Text style = {styles.titleModal}>Tomate</Text>
             <View style = {{marginTop: 10}}>
-            <Text>ALimento</Text>
+              <Text style = {styles.titleModal}>Alimento</Text>
               <Text style = {styles.dadosModal}>ID: 3</Text>
               <Text style = {styles.dadosModal}>Categoria: Frutas</Text>
               <Text style = {styles.dadosModal}>Origem: Plantação Ágricola</Text>
@@ -259,19 +264,19 @@ const Alimentos = (props)=>{
                 ser usados ​​em uma variedade de pratos, como salsa, pizza e molho
                  de macarrão.</Text>
 
-              <Text>Fazenda</Text>
+              <Text style = {styles.titleModal}>Fazenda</Text>
               <Text style = {styles.dadosModal}>ID: 3</Text>
               <Text style = {styles.dadosModal}>Nome: Fazenda Sol Poente</Text>
               <Text style = {styles.dadosModal}>Endereço: Sítio das Montanhas, S/N, Zona Rural</Text>
               <Text style = {styles.dadosModal}>contato: Pedro Santos - (XX) XXXX-XXXX</Text>
 
-              <Text>Distribuidor</Text>
+              <Text style = {styles.titleModal}>Distribuidor</Text>
               <Text style = {styles.dadosModal}>ID: 3</Text>
               <Text style = {styles.dadosModal}>Nome: Distribuidora de Alimentos Frescor do Campo</Text>
               <Text style = {styles.dadosModal}>Endereço: Rua dos Chefs, 789, Bairro Nobre</Text>
               <Text style = {styles.dadosModal}>contato: Ana Rodrigues - (XX) XXXX-XXXX</Text>
 
-              <Text>Nutrição</Text>
+              <Text style = {styles.titleModal}>Nutrição</Text>
               <Text style = {styles.dadosModal}>ID: 3</Text>
               <Text style = {styles.dadosModal}>Calorias: 18</Text>
               <Text style = {styles.dadosModal}>Gorduras totais: 0.2</Text>
@@ -288,6 +293,7 @@ const Alimentos = (props)=>{
               }}>x</Text>
             </View>
           </View>
+          </ScrollView>
         </Modal>
 
         <View>        
@@ -300,11 +306,12 @@ const Alimentos = (props)=>{
 
        <View style = {{marginTop: 10}}>
         <Modal transparent = {true} visible = {modalBrocolis} animationType= "slide" onRequestClose={()=>{setModalBrocolis(false)}}>
+          <ScrollView>
           <View style = {styles.VModal}>
             <Image source = {imgBrocolis} style = {styles.logoConsulta}/>
             <Text style = {styles.titleModal}>Brócolis</Text>
             <View style = {{marginTop: 10}}>
-            <Text>ALimento</Text>
+              <Text style = {styles.titleModal}>Alimento</Text>
               <Text style = {styles.dadosModal}>ID: 4</Text>
               <Text style = {styles.dadosModal}>Categoria: Verduras</Text>
               <Text style = {styles.dadosModal}>Origem: Plantação Ágricola</Text>
@@ -313,19 +320,19 @@ const Alimentos = (props)=>{
               pode ser consumido sozinho ou em uma variedade de pratos, como refogados, sopas
                e saladas.</Text>
 
-              <Text>Fazenda</Text>
+              <Text style = {styles.titleModal}>Fazenda</Text>
               <Text style = {styles.dadosModal}>ID: 4</Text>
               <Text style = {styles.dadosModal}>Nome: Fazenda Monte Verde</Text>
               <Text style = {styles.dadosModal}>Endereço: Sítio dos Pássaros, S/N, Zona Rural</Text>
               <Text style = {styles.dadosModal}>contato: Ana Rodrigues - (XX) XXXX-XXXX</Text>
 
-              <Text>Distribuidor</Text>
+              <Text style = {styles.titleModal}>Distribuidor</Text>
               <Text style = {styles.dadosModal}>ID: 4</Text>
               <Text style = {styles.dadosModal}>Nome: Distribuidora de Alimentos NutriVida</Text>
               <Text style = {styles.dadosModal}>Endereço: Avenida das Colheitas, 987, Zona Rural</Text>
               <Text style = {styles.dadosModal}>contato: Laura Nunes - (XX) XXXX-XXXX</Text>
 
-              <Text>Nutrição</Text>
+              <Text style = {styles.titleModal}>Nutrição</Text>
               <Text style = {styles.dadosModal}>ID: 4</Text>
               <Text style = {styles.dadosModal}>Calorias: 34</Text>
               <Text style = {styles.dadosModal}>Gorduras totais: 0.4</Text>
@@ -342,6 +349,7 @@ const Alimentos = (props)=>{
               }}>x</Text>
             </View>
           </View>
+          </ScrollView>
         </Modal>
 
         <View>        
@@ -356,11 +364,12 @@ const Alimentos = (props)=>{
     <View style = {{flexDirection: "row"}}>
       <View style = {{marginTop: 10}}>
         <Modal transparent = {true} visible = {modalOvo} animationType= "slide" onRequestClose={()=>{setModalOvo(false)}}>
+          <ScrollView>
           <View style = {styles.VModal}>
             <Image source = {imgOvo} style = {styles.logoConsulta}/>
             <Text style = {styles.titleModal}>Ovo</Text>
             <View style = {{marginTop: 10}}>
-            <Text>ALimento</Text>
+              <Text style = {styles.titleModal}>Alimento</Text>
               <Text style = {styles.dadosModal}>ID: 5</Text>
               <Text style = {styles.dadosModal}>Categoria: Animais</Text>
               <Text style = {styles.dadosModal}>Origem: Galinhas</Text>
@@ -370,19 +379,19 @@ const Alimentos = (props)=>{
                sozinhos ou podem ser usados ​​em uma variedade de pratos, como
                omeletes, ovos mexidos e quiches.</Text>
 
-              <Text>Fazenda</Text>
+              <Text style = {styles.titleModal}>Fazenda</Text>
               <Text style = {styles.dadosModal}>ID: 5</Text>
               <Text style = {styles.dadosModal}>Nome: Fazenda Vista Alegre</Text>
               <Text style = {styles.dadosModal}>Endereço: Estrada do Sertão, KM 30, Zona Rural</Text>
               <Text style = {styles.dadosModal}>contato: Lucas Almeida - (XX) XXXX-XXXX</Text>
 
-              <Text>Distribuidor</Text>
+              <Text style = {styles.titleModal}>Distribuidor</Text>
               <Text style = {styles.dadosModal}>ID: 5</Text>
               <Text style = {styles.dadosModal}>Nome: Distribuidora de Alimentos Sabores do Mundo</Text>
               <Text style = {styles.dadosModal}>Endereço: Rua das Vitaminas, 654, Parque Industrial</Text>
               <Text style = {styles.dadosModal}>contato: Sofia Mendes - (XX) XXXX-XXXX</Text>
 
-              <Text>Nutrição</Text>
+              <Text style = {styles.titleModal}>Nutrição</Text>
               <Text style = {styles.dadosModal}>ID: 5</Text>
               <Text style = {styles.dadosModal}>Calorias: 155</Text>
               <Text style = {styles.dadosModal}>Gorduras totais: 11</Text>
@@ -400,6 +409,7 @@ const Alimentos = (props)=>{
               }}>x</Text>
             </View>
           </View>
+          </ScrollView>
         </Modal>
 
         <View>        
@@ -412,11 +422,12 @@ const Alimentos = (props)=>{
 
        <View style = {{marginTop: 10}}>
         <Modal transparent = {true} visible = {modalArroz} animationType= "slide" onRequestClose={()=>{setModalArroz(false)}}>
+          <ScrollView>
           <View style = {styles.VModal}>
             <Image source = {imgArroz} style = {styles.logoConsulta}/>
             <Text style = {styles.titleModal}>Arroz</Text>
             <View style = {{marginTop: 10}}>
-            <Text>ALimento</Text>
+              <Text style = {styles.titleModal}>Alimento</Text>
               <Text style = {styles.dadosModal}>ID: 6</Text>
               <Text style = {styles.dadosModal}>Categoria: Cereais</Text>
               <Text style = {styles.dadosModal}>Origem: Plantação Ágricola</Text>
@@ -425,19 +436,19 @@ const Alimentos = (props)=>{
                pode ser consumido sozinho ou em diversos pratos, como sushi, risoto
                e arroz frito.</Text>
 
-              <Text>Fazenda</Text>
+              <Text style = {styles.titleModal}>Fazenda</Text>
               <Text style = {styles.dadosModal}>ID: 6</Text>
               <Text style = {styles.dadosModal}>Nome: Fazenda Boa Esperança</Text>
               <Text style = {styles.dadosModal}>Endereço: Fazenda do Sol, S/N, Zona Rural</Text>
               <Text style = {styles.dadosModal}>contato: Laura Nunes - (XX) XXXX-XXXX</Text>
 
-              <Text>Distribuidor</Text>
+              <Text style = {styles.titleModal}>Distribuidor</Text>
               <Text style = {styles.dadosModal}>ID: 6</Text>
               <Text style = {styles.dadosModal}>Nome: Distribuidora de Alimentos Primeira Escolha</Text>
               <Text style = {styles.dadosModal}>Endereço: Rua dos Temperos, 321, Centro</Text>
               <Text style = {styles.dadosModal}>contato: Rafaela Santos - (XX) XXXX-XXXX</Text>
 
-              <Text>Nutrição</Text>
+              <Text style = {styles.titleModal}>Nutrição</Text>
               <Text style = {styles.dadosModal}>ID: 6</Text>
               <Text style = {styles.dadosModal}>Calorias: 130</Text>
               <Text style = {styles.dadosModal}>Gorduras totais: 0.3</Text>
@@ -455,6 +466,7 @@ const Alimentos = (props)=>{
               }}>x</Text>
             </View>
           </View>
+          </ScrollView>
         </Modal>
 
         <View>        
@@ -469,29 +481,30 @@ const Alimentos = (props)=>{
     <View style = {{flexDirection: "row"}}>
       <View style = {{marginTop: 10}}>
         <Modal transparent = {true} visible = {modalCenoura} animationType= "slide" onRequestClose={()=>{setModalCenoura(false)}}>
+          <ScrollView>
           <View style = {styles.VModal}>
             <Image source = {imgCenoura} style = {styles.logoConsulta}/>
             <Text style = {styles.titleModal}>Cenoura</Text>
             <View style = {{marginTop: 10}}>
-            <Text>ALimento</Text>
+              <Text style = {styles.titleModal}>Alimento</Text>
               <Text style = {styles.dadosModal}>ID: </Text>
               <Text style = {styles.dadosModal}>Categoria: </Text>
               <Text style = {styles.dadosModal}>Origem: </Text>
               <Text style = {styles.dadosModal}>Data de validade: </Text>
 
-              <Text>Fazenda</Text>
+              <Text style = {styles.titleModal}>Fazenda</Text>
               <Text style = {styles.dadosModal}>ID: </Text>
               <Text style = {styles.dadosModal}>Nome: </Text>
               <Text style = {styles.dadosModal}>Endereço: </Text>
               <Text style = {styles.dadosModal}>contato: </Text>
 
-              <Text>Distribuidor</Text>
+              <Text style = {styles.titleModal}>Distribuidor</Text>
               <Text style = {styles.dadosModal}>ID: </Text>
               <Text style = {styles.dadosModal}>Nome: </Text>
               <Text style = {styles.dadosModal}>Endereço: </Text>
               <Text style = {styles.dadosModal}>contato: </Text>
 
-              <Text>Nutrição</Text>
+              <Text style = {styles.titleModal}>Nutrição</Text>
               <Text style = {styles.dadosModal}>ID: </Text>
               <Text style = {styles.dadosModal}>Gorduras totais: </Text>
               <Text style = {styles.dadosModal}>Gordura saturada: </Text>
@@ -507,6 +520,7 @@ const Alimentos = (props)=>{
               }}>x</Text>
             </View>
           </View>
+          </ScrollView>
         </Modal>
 
         <View>        
@@ -519,11 +533,12 @@ const Alimentos = (props)=>{
 
        <View style = {{marginTop: 10}}>
         <Modal transparent = {true} visible = {modalBeringela} animationType= "slide" onRequestClose={()=>{setModalBeringela(false)}}>
+          <ScrollView>
           <View style = {styles.VModal}>
             <Image source = {imgBeringela} style = {styles.logoConsulta}/>
             <Text style = {styles.titleModal}>Beringela</Text>
             <View style = {{marginTop: 10}}>
-            <Text>ALimento</Text>
+              <Text style = {styles.titleModal}>Alimento</Text>
               <Text style = {styles.dadosModal}>ID: 7</Text>
               <Text style = {styles.dadosModal}>Categoria: Legumes</Text>
               <Text style = {styles.dadosModal}>Origem: Plantação Ágricola</Text>
@@ -532,19 +547,19 @@ const Alimentos = (props)=>{
                de fibras. A berinjela pode ser consumida sozinha ou em uma variedade
                de pratos, como berinjela ao parmesão, baba ghanoush e moussaka.</Text>
 
-              <Text>Fazenda</Text>
+              <Text style = {styles.titleModal}>Fazenda</Text>
               <Text style = {styles.dadosModal}>ID: 7</Text>
               <Text style = {styles.dadosModal}>Nome: Fazenda Estrela do Norte</Text>
               <Text style = {styles.dadosModal}>Endereço: Sítio da Paz, S/N, Zona Rural</Text>
               <Text style = {styles.dadosModal}>contato: Gabriel Costa - (XX) XXXX-XXXX</Text>
 
-              <Text>Distribuidor</Text>
+              <Text style = {styles.titleModal}>Distribuidor</Text>
               <Text style = {styles.dadosModal}>ID: 7</Text>
               <Text style = {styles.dadosModal}>Nome: Distribuidora Alimentar Sabor & Qualidade</Text>
               <Text style = {styles.dadosModal}>Endereço: Avenida da Qualidade, 246, Bairro Novo</Text>
               <Text style = {styles.dadosModal}>contato: Camila Mendonça - (XX) XXXX-XXXX</Text>
 
-              <Text>Nutrição</Text>
+              <Text style = {styles.titleModal}>Nutrição</Text>
               <Text style = {styles.dadosModal}>ID: 7</Text>
               <Text style = {styles.dadosModal}>Calorias: 25</Text>
               <Text style = {styles.dadosModal}>Gorduras totais: 0.2</Text>
@@ -562,6 +577,7 @@ const Alimentos = (props)=>{
               }}>x</Text>
             </View>
           </View>
+          </ScrollView>
         </Modal>
 
         <View>        
@@ -768,7 +784,7 @@ const styles = StyleSheet.create({
   VModal:{
     backgroundColor: "#5F6D7A",
     marginHorizontal: 20,
-    height: "80%",
+    height: "100%",
     borderRadius: 9
   },
 
@@ -788,6 +804,14 @@ const styles = StyleSheet.create({
 
   dadosModal:{
     fontSize: 14,
-    marginLeft: 130
+    //marginLeft: 130
+    textALign: "center"
+  },
+
+  categoriaModal:{
+    textAlign: "center",
+    fontSize: 16,
+    fontWeight: 600,
+    color: "white"
   }
 })
