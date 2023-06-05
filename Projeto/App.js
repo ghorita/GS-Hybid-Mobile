@@ -5,7 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {AntDesign, FontAwesome5, MaterialCommunityIcons} from '@expo/vector-icons';
 import axios from 'axios';
-import Firebase from './src/Config';
+
 
 
 import imgCarne from './assets/carne.jpg';
@@ -23,14 +23,27 @@ const Tab = createBottomTabNavigator();
 const {Navigator, Screen} = Tab;
 
 const Procurar = (props) =>{
-  const [infoCep, setInfoCep] = useState({});
-  const [consulta, setConsulta] = useState("");
-  1
-  const getCep = async ()=>{
-    const{data} = await axios.get("https://api-techtitans-default-rtdb.firebaseio.com/");
-    console.log(data);
-  }
- 
+
+  const [alimentos, setAlimentos] = useState([]);
+
+  const api  = axios.create({
+    baseURL: "https://api-techtitans-default-rtdb.firebaseio.com"
+  });
+
+  useEffect(()=>{
+    api.get("/TAB_ALIMENTO.json")
+    .then((info)=>{
+      const lista = []
+      for (const chave in info.data) { 
+        const obj = info.data[chave];
+        obj["ID"] = chave;
+        lista.push(obj);
+      }
+
+      setAlimentos(lista)
+    })
+    .catch((err)=>{alert("Erro ao acessar a lista de despesas")})
+}, [])
   
   return(
     <View style = {{flex: 1, backgroundColor: "#202025" }}> 
@@ -54,16 +67,30 @@ const Procurar = (props) =>{
                    style = {{borderWidth: 1, borderColor: "gray",
                               paddingVertical: 15, fontSize: 16,
                               borderRightWidth: 0, borderLeftWidth: 0}}/>
-        <Text style = {styles.buttonProcurar} onPress= {getCep}>Consultar</Text>
+        <Text style = {styles.buttonProcurar}>Consultar</Text>
       </View>
 
       <View>
         <Text>ALimento</Text>
-        <Text>ID: {infoCep.id}</Text>
+        <Text>ID:</Text>
         <Text>Categoria: </Text>
         <Text>Origem: </Text>
         <Text>Data de validade: </Text>
       </View>
+
+      <Button title="Ler a Lista" onPress={()=>{
+        api.get("/TAB_ALIMENTO.json")
+        .then((info)=>{alert("Dados lidos: " + JSON.stringify(info.data))})
+        .catch((err)=>{alert("Erro: " + err)})
+      }}/>
+
+      
+      <Button title="Salvar na Lista" onPress={()=>{
+        api.post("/agenda.json", 
+        {nome: "Maria Silva", email:"maria@teste.com", telefone: "(11) 222-222"})
+        .then((info)=>{alert("Dados lidos: " + JSON.stringify(info.data))})
+        .catch((err)=>{alert("Erro: " + err)})
+      }}/>
 
 
       
@@ -111,33 +138,38 @@ const Alimentos = (props)=>{
             <Text style = {styles.titleModal}>Milho</Text>
             <View style = {{marginTop: 10}}>
               <Text>ALimento</Text>
-              <Text style = {styles.dadosModal}>ID: </Text>
-              <Text style = {styles.dadosModal}>Categoria: </Text>
-              <Text style = {styles.dadosModal}>Origem: </Text>
-              <Text style = {styles.dadosModal}>Data de validade: </Text>
+              <Text style = {styles.dadosModal}>ID: 1 </Text>
+              <Text style = {styles.dadosModal}>Categoria: Cereais </Text>
+              <Text style = {styles.dadosModal}>Origem: Plantação Ágricola </Text>
+              <Text style = {styles.dadosModal}>Descriçaõ: O milho é um tipo de
+              grão nativo da América do Norte. É uma boa fonte de carboidratos, fibras
+               e vitaminas. O milho pode ser comido sozinho ou em uma variedade de pratos,
+                como pão de milho, sopa de milho e espiga de milho. </Text>
 
               <Text>Fazenda</Text>
-              <Text style = {styles.dadosModal}>ID: </Text>
-              <Text style = {styles.dadosModal}>Nome: </Text>
-              <Text style = {styles.dadosModal}>Endereço: </Text>
-              <Text style = {styles.dadosModal}>contato: </Text>
+              <Text style = {styles.dadosModal}>ID: 1</Text>
+              <Text style = {styles.dadosModal}>Nome: Fazenda BoaVista</Text>
+              <Text style = {styles.dadosModal}>Endereço: Estrada da Esperança, S/N, Zona Rural</Text>
+              <Text style = {styles.dadosModal}>contato: João da Silva - (XX) XXXX-XXXX</Text>
 
               <Text>Distribuidor</Text>
-              <Text style = {styles.dadosModal}>ID: </Text>
-              <Text style = {styles.dadosModal}>Nome: </Text>
-              <Text style = {styles.dadosModal}>Endereço: </Text>
-              <Text style = {styles.dadosModal}>contato: </Text>
+              <Text style = {styles.dadosModal}>ID: 1</Text>
+              <Text style = {styles.dadosModal}>Nome: Distribuidora Alimentar Sabor & Qualidade</Text>
+              <Text style = {styles.dadosModal}>Endereço: Rua dos Sabores, 123, Centro</Text>
+              <Text style = {styles.dadosModal}>contato: Maria Lurdes - (XX) XXXX-XXXX</Text>
 
               <Text>Nutrição</Text>
-              <Text style = {styles.dadosModal}>ID: </Text>
-              <Text style = {styles.dadosModal}>Gorduras totais: </Text>
-              <Text style = {styles.dadosModal}>Gordura saturada: </Text>
-              <Text style = {styles.dadosModal}>Gordura trans: </Text>
-              <Text style = {styles.dadosModal}>Colesterol: </Text>
-              <Text style = {styles.dadosModal}>Carboidrato: </Text>
-              <Text style = {styles.dadosModal}>Açucar: </Text>
-              <Text style = {styles.dadosModal}>Proteínas: </Text>
-              <Text style = {styles.dadosModal}>Fibra Alimentar: </Text>
+              <Text style = {styles.dadosModal}>ID: 1</Text>
+              <Text style = {styles.dadosModal}>Calorias: 96</Text>
+              <Text style = {styles.dadosModal}>Gorduras totais: 1</Text>
+              <Text style = {styles.dadosModal}>Gordura saturada: 0</Text>
+              <Text style = {styles.dadosModal}>Gordura trans: 0</Text>
+              <Text style = {styles.dadosModal}>Colesterol: 0</Text>
+              <Text style = {styles.dadosModal}>Carboidrato: 21</Text>
+              <Text style = {styles.dadosModal}>Açucar: 3</Text>
+              <Text style = {styles.dadosModal}>Proteínas: 3</Text>
+              <Text style = {styles.dadosModal}>Fibra Alimentar: 2</Text>
+              <Text style = {styles.dadosModal}>Sódio: 1</Text>
 
               <Text style = {styles.ModalButton}onPress = {() =>{
               setModalMilho(false);
@@ -158,36 +190,40 @@ const Alimentos = (props)=>{
         <Modal transparent = {true} visible = {modalCarne} animationType= "slide" onRequestClose={()=>{setModalCarne(false)}}>
           <View style = {styles.VModal}>
             <Image source = {imgCarne} style = {styles.logoConsulta}/>
-            <Text style = {styles.titleModal}>Carne</Text>
+            <Text style = {styles.titleModal}>Carne Vermelha</Text>
             <View style = {{marginTop: 10}}>
             <Text>ALimento</Text>
-              <Text style = {styles.dadosModal}>ID: </Text>
-              <Text style = {styles.dadosModal}>Categoria: </Text>
-              <Text style = {styles.dadosModal}>Origem: </Text>
-              <Text style = {styles.dadosModal}>Data de validade: </Text>
+              <Text style = {styles.dadosModal}>ID: 2</Text>
+              <Text style = {styles.dadosModal}>Categoria: Carnes</Text>
+              <Text style = {styles.dadosModal}>Origem: Pecuaria</Text>
+              <Text style = {styles.dadosModal}>Descrição: A carne é um 
+               tipo de proteína que vem de animais. É uma boa fonte de proteína,
+               ferro e zinco. A carne pode ser consumida sozinha ou pode ser usada
+               em uma variedade de pratos, como hambúrgueres, bifes e nuggets de frango.</Text>
 
               <Text>Fazenda</Text>
-              <Text style = {styles.dadosModal}>ID: </Text>
-              <Text style = {styles.dadosModal}>Nome: </Text>
-              <Text style = {styles.dadosModal}>Endereço: </Text>
-              <Text style = {styles.dadosModal}>contato: </Text>
+              <Text style = {styles.dadosModal}>ID: 2</Text>
+              <Text style = {styles.dadosModal}>Nome: Fazenda Primavera</Text>
+              <Text style = {styles.dadosModal}>Endereço: Rodovia do Cerrado, KM 50, Zona Rural</Text>
+              <Text style = {styles.dadosModal}>contato: Maria Oliveira - (XX) XXXX-XXXX</Text>
 
               <Text>Distribuidor</Text>
-              <Text style = {styles.dadosModal}>ID: </Text>
-              <Text style = {styles.dadosModal}>Nome: </Text>
-              <Text style = {styles.dadosModal}>Endereço: </Text>
-              <Text style = {styles.dadosModal}>contato: </Text>
+              <Text style = {styles.dadosModal}>ID: 2</Text>
+              <Text style = {styles.dadosModal}>Nome: Distribuidora Gourmet Bella Vita</Text>
+              <Text style = {styles.dadosModal}>Endereço: Avenida da Saúde, 456, Vila Verde</Text>
+              <Text style = {styles.dadosModal}>contato: Pedro Santos - (XX) XXXX-XXXX</Text>
 
               <Text>Nutrição</Text>
               <Text style = {styles.dadosModal}>ID: </Text>
-              <Text style = {styles.dadosModal}>Gorduras totais: </Text>
-              <Text style = {styles.dadosModal}>Gordura saturada: </Text>
-              <Text style = {styles.dadosModal}>Gordura trans: </Text>
-              <Text style = {styles.dadosModal}>Colesterol: </Text>
-              <Text style = {styles.dadosModal}>Carboidrato: </Text>
-              <Text style = {styles.dadosModal}>Açucar: </Text>
-              <Text style = {styles.dadosModal}>Proteínas: </Text>
-              <Text style = {styles.dadosModal}>Fibra Alimentar: </Text>
+              <Text style = {styles.dadosModal}>Calorias: 250 </Text>
+              <Text style = {styles.dadosModal}>Gorduras totais: 17</Text>
+              <Text style = {styles.dadosModal}>Gordura saturada: 7</Text>
+              <Text style = {styles.dadosModal}>Gordura trans: 0.8</Text>
+              <Text style = {styles.dadosModal}>Colesterol: 80</Text>
+              <Text style = {styles.dadosModal}>Carboidrato: 0</Text>
+              <Text style = {styles.dadosModal}>Açucar: 0</Text>
+              <Text style = {styles.dadosModal}>Proteínas: 26</Text>
+              <Text style = {styles.dadosModal}>Fibra Alimentar: 0</Text>
 
               <Text style = {styles.ModalButton}onPress = {() =>{
               setModalCarne(false);
@@ -213,33 +249,39 @@ const Alimentos = (props)=>{
             <Text style = {styles.titleModal}>Tomate</Text>
             <View style = {{marginTop: 10}}>
             <Text>ALimento</Text>
-              <Text style = {styles.dadosModal}>ID: </Text>
-              <Text style = {styles.dadosModal}>Categoria: </Text>
-              <Text style = {styles.dadosModal}>Origem: </Text>
-              <Text style = {styles.dadosModal}>Data de validade: </Text>
+              <Text style = {styles.dadosModal}>ID: 3</Text>
+              <Text style = {styles.dadosModal}>Categoria: Frutas</Text>
+              <Text style = {styles.dadosModal}>Origem: Plantação Ágricola</Text>
+              <Text style = {styles.dadosModal}>Descrição: O tomate é um tipo de
+               fruta nativa da América do Sul. Eles são uma boa fonte de vitaminas
+               C e A, bem como licopeno, um antioxidante que demonstrou reduzir o
+               risco de câncer. Os tomates podem ser consumidos sozinhos ou podem
+                ser usados ​​em uma variedade de pratos, como salsa, pizza e molho
+                 de macarrão.</Text>
 
               <Text>Fazenda</Text>
-              <Text style = {styles.dadosModal}>ID: </Text>
-              <Text style = {styles.dadosModal}>Nome: </Text>
-              <Text style = {styles.dadosModal}>Endereço: </Text>
-              <Text style = {styles.dadosModal}>contato: </Text>
+              <Text style = {styles.dadosModal}>ID: 3</Text>
+              <Text style = {styles.dadosModal}>Nome: Fazenda Sol Poente</Text>
+              <Text style = {styles.dadosModal}>Endereço: Sítio das Montanhas, S/N, Zona Rural</Text>
+              <Text style = {styles.dadosModal}>contato: Pedro Santos - (XX) XXXX-XXXX</Text>
 
               <Text>Distribuidor</Text>
-              <Text style = {styles.dadosModal}>ID: </Text>
-              <Text style = {styles.dadosModal}>Nome: </Text>
-              <Text style = {styles.dadosModal}>Endereço: </Text>
-              <Text style = {styles.dadosModal}>contato: </Text>
+              <Text style = {styles.dadosModal}>ID: 3</Text>
+              <Text style = {styles.dadosModal}>Nome: Distribuidora de Alimentos Frescor do Campo</Text>
+              <Text style = {styles.dadosModal}>Endereço: Rua dos Chefs, 789, Bairro Nobre</Text>
+              <Text style = {styles.dadosModal}>contato: Ana Rodrigues - (XX) XXXX-XXXX</Text>
 
               <Text>Nutrição</Text>
-              <Text style = {styles.dadosModal}>ID: </Text>
-              <Text style = {styles.dadosModal}>Gorduras totais: </Text>
-              <Text style = {styles.dadosModal}>Gordura saturada: </Text>
-              <Text style = {styles.dadosModal}>Gordura trans: </Text>
-              <Text style = {styles.dadosModal}>Colesterol: </Text>
-              <Text style = {styles.dadosModal}>Carboidrato: </Text>
-              <Text style = {styles.dadosModal}>Açucar: </Text>
-              <Text style = {styles.dadosModal}>Proteínas: </Text>
-              <Text style = {styles.dadosModal}>Fibra Alimentar: </Text>
+              <Text style = {styles.dadosModal}>ID: 3</Text>
+              <Text style = {styles.dadosModal}>Calorias: 18</Text>
+              <Text style = {styles.dadosModal}>Gorduras totais: 0.2</Text>
+              <Text style = {styles.dadosModal}>Gordura saturada: 0</Text>
+              <Text style = {styles.dadosModal}>Gordura trans: 0</Text>
+              <Text style = {styles.dadosModal}>Colesterol: 0</Text>
+              <Text style = {styles.dadosModal}>Carboidrato: 3.9</Text>
+              <Text style = {styles.dadosModal}>Açucar: 2.6</Text>
+              <Text style = {styles.dadosModal}>Proteínas: 0.9</Text>
+              <Text style = {styles.dadosModal}>Fibra Alimentar: 1.2</Text>
 
               <Text style = {styles.ModalButton}onPress = {() =>{
               setModalTomate(false);
@@ -263,33 +305,37 @@ const Alimentos = (props)=>{
             <Text style = {styles.titleModal}>Brócolis</Text>
             <View style = {{marginTop: 10}}>
             <Text>ALimento</Text>
-              <Text style = {styles.dadosModal}>ID: </Text>
-              <Text style = {styles.dadosModal}>Categoria: </Text>
-              <Text style = {styles.dadosModal}>Origem: </Text>
-              <Text style = {styles.dadosModal}>Data de validade: </Text>
+              <Text style = {styles.dadosModal}>ID: 4</Text>
+              <Text style = {styles.dadosModal}>Categoria: Verduras</Text>
+              <Text style = {styles.dadosModal}>Origem: Plantação Ágricola</Text>
+              <Text style = {styles.dadosModal}>Descrição: O brócolis é um tipo de vegetal
+               originário da Itália. É uma boa fonte de vitaminas C, K e fibras. O brócolis
+              pode ser consumido sozinho ou em uma variedade de pratos, como refogados, sopas
+               e saladas.</Text>
 
               <Text>Fazenda</Text>
-              <Text style = {styles.dadosModal}>ID: </Text>
-              <Text style = {styles.dadosModal}>Nome: </Text>
-              <Text style = {styles.dadosModal}>Endereço: </Text>
-              <Text style = {styles.dadosModal}>contato: </Text>
+              <Text style = {styles.dadosModal}>ID: 4</Text>
+              <Text style = {styles.dadosModal}>Nome: Fazenda Monte Verde</Text>
+              <Text style = {styles.dadosModal}>Endereço: Sítio dos Pássaros, S/N, Zona Rural</Text>
+              <Text style = {styles.dadosModal}>contato: Ana Rodrigues - (XX) XXXX-XXXX</Text>
 
               <Text>Distribuidor</Text>
-              <Text style = {styles.dadosModal}>ID: </Text>
-              <Text style = {styles.dadosModal}>Nome: </Text>
-              <Text style = {styles.dadosModal}>Endereço: </Text>
-              <Text style = {styles.dadosModal}>contato: </Text>
+              <Text style = {styles.dadosModal}>ID: 4</Text>
+              <Text style = {styles.dadosModal}>Nome: Distribuidora de Alimentos NutriVida</Text>
+              <Text style = {styles.dadosModal}>Endereço: Avenida das Colheitas, 987, Zona Rural</Text>
+              <Text style = {styles.dadosModal}>contato: Laura Nunes - (XX) XXXX-XXXX</Text>
 
               <Text>Nutrição</Text>
-              <Text style = {styles.dadosModal}>ID: </Text>
-              <Text style = {styles.dadosModal}>Gorduras totais: </Text>
-              <Text style = {styles.dadosModal}>Gordura saturada: </Text>
-              <Text style = {styles.dadosModal}>Gordura trans: </Text>
-              <Text style = {styles.dadosModal}>Colesterol: </Text>
-              <Text style = {styles.dadosModal}>Carboidrato: </Text>
-              <Text style = {styles.dadosModal}>Açucar: </Text>
-              <Text style = {styles.dadosModal}>Proteínas: </Text>
-              <Text style = {styles.dadosModal}>Fibra Alimentar: </Text>
+              <Text style = {styles.dadosModal}>ID: 4</Text>
+              <Text style = {styles.dadosModal}>Calorias: 34</Text>
+              <Text style = {styles.dadosModal}>Gorduras totais: 0.4</Text>
+              <Text style = {styles.dadosModal}>Gordura saturada: 0</Text>
+              <Text style = {styles.dadosModal}>Gordura trans: 0</Text>
+              <Text style = {styles.dadosModal}>Colesterol: 0</Text>
+              <Text style = {styles.dadosModal}>Carboidrato: 7</Text>
+              <Text style = {styles.dadosModal}>Açucar: 1.7</Text>
+              <Text style = {styles.dadosModal}>Proteínas: 2.8</Text>
+              <Text style = {styles.dadosModal}>Fibra Alimentar: 2.6</Text>
 
               <Text style = {styles.ModalButton}onPress = {() =>{
               setModalBrocolis(false);
