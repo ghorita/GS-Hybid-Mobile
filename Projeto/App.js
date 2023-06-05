@@ -7,6 +7,7 @@ import {AntDesign, FontAwesome5, MaterialCommunityIcons} from '@expo/vector-icon
 import axios from 'axios';
 
 
+
 import imgCarne from './assets/carne.jpg';
 import imgMilho from './assets/milho.jpg';
 import imgTomate from './assets/tomate.jpg';
@@ -24,25 +25,44 @@ const api  = axios.create({
 const Tab = createBottomTabNavigator();
 const {Navigator, Screen} = Tab;
 
+const ItemList = () => {
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          'https://api-techtitans-default-rtdb.firebaseio.com.json'
+        );
+        setItems(response.data);
+      } catch (error) {
+        console.log('Erro ao obter itens:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  return (
+    <View>
+      {Object.keys(items).map((key) => (
+        <Text key={key}>{items[key].name}</Text>
+      ))}
+    </View>
+  );
+};
+
+const Teste = () => {
+  return (
+    <View style={styles.container}>
+      <ItemList />
+    </View>
+  );
+};
+
+
 const Procurar = (props) =>{
 
-  const [alimentos, setAlimentos] = useState([]);
-
-
-  useEffect(()=>{
-    api.get("/TAB_ALIMENTO.json")
-    .then((info)=>{
-      const lista = []
-      for (const chave in info.data) { 
-        const obj = info.data[chave];
-        obj["ID"] = chave;
-        lista.push(obj);
-      }
-
-      setAlimentos(lista)
-    })
-    .catch((err)=>{alert("Erro ao acessar a lista de despesas")})
-}, [])
   
   return(
     <View style = {{flex: 1, backgroundColor: "#202025" }}> 
@@ -672,6 +692,13 @@ const Telas = (props)=>{
         )}}>
           {(props)=><Procurar{...props}/>}
         </Screen>
+
+        <Screen name = "TESTE" options = {{tabBarIcon: ({color, size})=>(
+          <FontAwesome5 name = "search" color = {color} size = {size}/>
+        )}}>
+          {(props)=><Teste{...props}/>}
+        </Screen>
+        
       </Navigator>
     </View>
   )
@@ -812,5 +839,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 600,
     color: "white"
+  },
+
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   }
+  
 })
