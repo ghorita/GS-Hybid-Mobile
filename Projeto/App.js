@@ -7,7 +7,6 @@ import {AntDesign, FontAwesome5, MaterialCommunityIcons} from '@expo/vector-icon
 import axios from 'axios';
 
 
-
 import imgCarne from './assets/carne.jpg';
 import imgMilho from './assets/milho.jpg';
 import imgTomate from './assets/tomate.jpg';
@@ -18,6 +17,9 @@ import imgCenoura from './assets/cenoura.jpg';
 import imgBeringela from './assets/beringela.jpg';
 import imgLogo from './assets/logo.png';
 
+const api  = axios.create({
+  baseURL: "https://api-techtitans-default-rtdb.firebaseio.com"
+});
 
 const Tab = createBottomTabNavigator();
 const {Navigator, Screen} = Tab;
@@ -26,9 +28,6 @@ const Procurar = (props) =>{
 
   const [alimentos, setAlimentos] = useState([]);
 
-  const api  = axios.create({
-    baseURL: "https://api-techtitans-default-rtdb.firebaseio.com"
-  });
 
   useEffect(()=>{
     api.get("/TAB_ALIMENTO.json")
