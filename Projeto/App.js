@@ -5,6 +5,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {AntDesign, FontAwesome5, MaterialCommunityIcons} from '@expo/vector-icons';
 import axios from 'axios';
+import Firebase from './src/Config';
+
 
 import imgCarne from './assets/carne.jpg';
 import imgMilho from './assets/milho.jpg';
@@ -16,21 +18,19 @@ import imgCenoura from './assets/cenoura.jpg';
 import imgBeringela from './assets/beringela.jpg';
 import imgLogo from './assets/logo.png';
 
-const api = axios.create({
-  baseURL: "https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.9.2/apache-maven-3.9.2-bin.zip"
-});
 
 const Tab = createBottomTabNavigator();
 const {Navigator, Screen} = Tab;
 
 const Procurar = (props) =>{
-
+  const [infoCep, setInfoCep] = useState({});
   const [consulta, setConsulta] = useState("");
- 
-  async function consultaApi(){
-    const {data} = await api.get('https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.9.2/apache-maven-3.9.2-bin.zip');
+  1
+  const getCep = async ()=>{
+    const{data} = await axios.get("https://api-techtitans-default-rtdb.firebaseio.com/");
     console.log(data);
   }
+ 
   
   return(
     <View style = {{flex: 1, backgroundColor: "#202025" }}> 
@@ -53,8 +53,16 @@ const Procurar = (props) =>{
         <TextInput placeholder = "Digite o nome ou QR Code do produto"
                    style = {{borderWidth: 1, borderColor: "gray",
                               paddingVertical: 15, fontSize: 16,
-                              borderRightWidth: 0, borderLeftWidht: 0}}/>
-        <Text style = {styles.buttonProcurar} onPress={consultaApi}>Consultar</Text>
+                              borderRightWidth: 0, borderLeftWidth: 0}}/>
+        <Text style = {styles.buttonProcurar} onPress= {getCep}>Consultar</Text>
+      </View>
+
+      <View>
+        <Text>ALimento</Text>
+        <Text>ID: {infoCep.id}</Text>
+        <Text>Categoria: </Text>
+        <Text>Origem: </Text>
+        <Text>Data de validade: </Text>
       </View>
 
 
