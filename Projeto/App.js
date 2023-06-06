@@ -23,6 +23,42 @@ const api  = axios.create({
 const Tab = createBottomTabNavigator();
 const {Navigator, Screen} = Tab;
 
+const CadastroTela = () => {
+  const [nome, setNome] = useState('');
+  const [email, setEmail] = useState('');
+
+  const cadastrar = () => {
+    axios
+      .post('https://api-techtitans-default-rtdb.firebaseio.com/usuarios.json', { nome, email })
+      .then((response) => {
+        // Lógica para lidar com a resposta da API
+        console.log(response.data);
+        alert('Cadastro realizado com sucesso!');
+      })
+      .catch((error) => {
+        // Lógica para lidar com erros da API
+        console.error(error);
+        alert('Erro ao cadastrar!');
+      });
+  };
+
+  return (
+    <View>
+      <TextInput
+        placeholder="Nome"
+        value={nome}
+        onChangeText={(text) => setNome(text)}
+      />
+      <TextInput
+        placeholder="Email"
+        value={email}
+        onChangeText={(text) => setEmail(text)}
+      />
+      <Button title="Cadastrar" onPress={cadastrar} />
+    </View>
+  );
+};
+
 const Procurar = (props) =>{
   const [id, setId] = useState("");
   const [data, setData] = useState("");
@@ -656,8 +692,42 @@ const Login = (props) =>{
   )
 }
 
+const TelasCadastro = (props) =>{
+  const [email, setEmail] = useState(""); 
+  const [senha, setSenha] = useState("");
+  return(
+    <View style = {{flex: 1}}>
+      <Navigator screenOptions = {{headerStyle:{ 
+                                  backgroundColor: "#4B74C5"},
+                                headerTitleStyle:{
+                                  fontWeight: "bold"
+                                },
+                                headerTitleAlign: "center",
+                                headerTintColor: "white",
+                                headerStatusBarHeight: 1,
+                                tabBarActiveBackgroundColor: "#4B74C5",
+                                tabBarActiveTintColor: "white"
+                              
+      }}>
+      <Screen name = "Login" options = {{tabBarIcon: ({color, size}) =>(
+        <MaterialCommunityIcons name  ="food-fork-drink" color = {color} size = {size}/>
+      )}}>
+        {(props)=><Login{...props}/>}
+      </Screen>
 
-const Telas = (props)=>{
+      <Screen name = "Cadastro" options = {{tabBarIcon: ({color, size})=>(
+        <FontAwesome5 name = "search" color = {color} size = {size}/>
+      )}}>
+        {(props)=><CadastroTela{...props}/>}
+      </Screen>
+      
+      </Navigator>
+    </View>
+  )
+}
+
+
+const TelasAlimento = (props)=>{
   return(
     <View style = {{flex: 1}}>
       <Navigator screenOptions = {{headerStyle:{ 
@@ -683,12 +753,6 @@ const Telas = (props)=>{
         )}}>
           {(props)=><Procurar{...props}/>}
         </Screen>
-
-        <Screen name = "TESTE" options = {{tabBarIcon: ({color, size})=>(
-          <FontAwesome5 name = "search" color = {color} size = {size}/>
-        )}}>
-          {(props)=><Teste{...props}/>}
-        </Screen>
         
       </Navigator>
     </View>
@@ -696,7 +760,7 @@ const Telas = (props)=>{
 }
 
 export default function App(){
-  const [logado, setLogado] = useState(true);
+  const [logado, setLogado] = useState();
 
 
   const fazerLogin = ( logged ) =>{
@@ -706,8 +770,8 @@ export default function App(){
   return(
     <NavigationContainer>
       <View style = {{flex: 1}}>
-      {logado ? <Telas/> : 
-                  <Login onLogar={fazerLogin}/>}
+      {logado ? <TelasAlimento/> : 
+                  <TelasCadastro onLogar={fazerLogin}/>}
       </View>
     </NavigationContainer>
   )
