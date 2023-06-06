@@ -6,8 +6,6 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {AntDesign, FontAwesome5, MaterialCommunityIcons} from '@expo/vector-icons';
 import axios from 'axios';
 
-
-
 import imgCarne from './assets/carne.jpg';
 import imgMilho from './assets/milho.jpg';
 import imgTomate from './assets/tomate.jpg';
@@ -25,45 +23,20 @@ const api  = axios.create({
 const Tab = createBottomTabNavigator();
 const {Navigator, Screen} = Tab;
 
-const ItemList = () => {
-  const [items, setItems] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          'https://api-techtitans-default-rtdb.firebaseio.com.json'
-        );
-        setItems(response.data);
-      } catch (error) {
-        console.log('Erro ao obter itens:', error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  return (
-    <View>
-      {Object.keys(items).map((key) => (
-        <Text key={key}>{items[key].name}</Text>
-      ))}
-    </View>
-  );
-};
-
-const Teste = () => {
-  return (
-    <View style={styles.container}>
-      <ItemList />
-    </View>
-  );
-};
-
-
 const Procurar = (props) =>{
+  const [id, setId] = useState("");
+  const [data, setData] = useState("");
 
-  
+  const buscarItem = ()=> {
+    api.get(`/TB_ALIMENTO/${id}.json`)
+    .then((response) => {
+      setData(response.data);
+    })
+    .catch((error)=> {
+      alert.error("Erro: ", error);
+    });
+  };
+
   return(
     <View style = {{flex: 1, backgroundColor: "#202025" }}> 
       <View style = {{flexDirection: "row", marginTop: 30}}>
@@ -82,37 +55,22 @@ const Procurar = (props) =>{
       </View>   
 
       <View style = {{marginTop: 10}}>
-        <TextInput placeholder = "Digite o nome ou QR Code do produto"
+        <TextInput  value = {id} onChangeText = {setId} placeholder = "Digite o nome ou QR Code do produto"
                    style = {{borderWidth: 1, borderColor: "gray",
                               paddingVertical: 15, fontSize: 16,
                               borderRightWidth: 0, borderLeftWidth: 0}}/>
-        <Text style = {styles.buttonProcurar}>Consultar</Text>
+        <Text style = {styles.buttonProcurar} onPress={buscarItem}>Consultar</Text>
       </View>
 
+      {data && (
       <View>
-        <Text>ALimento</Text>
-        <Text>ID:</Text>
+        <Text>{data.nm_alimento}</Text>
+        <Text>ID: {data.id}</Text>
         <Text>Categoria: </Text>
         <Text>Origem: </Text>
         <Text>Data de validade: </Text>
       </View>
-
-      <Button title="Ler a Lista" onPress={()=>{
-        api.get("/TAB_ALIMENTO.json")
-        .then((info)=>{alert("Dados lidos: " + JSON.stringify(info.data))})
-        .catch((err)=>{alert("Erro: " + err)})
-      }}/>
-
-      
-      <Button title="Salvar na Lista" onPress={()=>{
-        api.post("/agenda.json", 
-        {nome: "Maria Silva", email:"maria@teste.com", telefone: "(11) 222-222"})
-        .then((info)=>{alert("Dados lidos: " + JSON.stringify(info.data))})
-        .catch((err)=>{alert("Erro: " + err)})
-      }}/>
-
-
-      
+      )}
     </View>
   )
 }
