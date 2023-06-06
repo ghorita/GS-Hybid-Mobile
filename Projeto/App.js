@@ -573,7 +573,7 @@ const Alimentos = (props)=>{
             <Text style = {styles.titleModal}>Cenoura</Text>
             <View style = {{marginTop: 10}}>
               <Text style = {styles.titleModal}>Alimento</Text>
-              <Text style = {styles.dadosModal}>ID: </Text>
+              <Text style = {styles.dadosModal}>ID: 7 </Text>
               <Text style = {styles.dadosModal}>Categoria: </Text>
               <Text style = {styles.dadosModal}>Origem: </Text>
               <Text style = {styles.dadosModal}>Data de validade: </Text>
