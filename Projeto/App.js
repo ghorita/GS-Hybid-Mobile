@@ -23,9 +23,63 @@ const api  = axios.create({
 const Tab = createBottomTabNavigator();
 const {Navigator, Screen} = Tab;
 
+const LoginTeste = (props)=>{
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+  const realizarLogin = () => {
+    
+      axios
+        .get('https://api-techtitans-default-rtdb.firebaseio.com/usuarios.json')
+        .then((response) => {
+          const usuarios = response.data;
+  
+          let usuarioEncontrado = false;
+          Object.keys(usuarios).forEach((key) => {
+            if (usuarios[key].email === email && usuarios[key].senha === senha) {
+              usuarioEncontrado = true;
+            }
+          });
+  
+          if (usuarioEncontrado) {
+            // Lógica para realizar o login com sucesso
+            props.onLogar(true);
+            console.log('Login realizado com sucesso!');
+            alert('Login realizado com sucesso!');
+          } else {
+            // Lógica para tratar usuário não encontrado
+            props.onLogar(false);
+            console.log('Usuário não encontrado!');
+            alert('Usuário não encontrado!');
+          }
+        })
+        .catch((error) => {
+          // Lógica para lidar com erros da API
+          console.error(error);
+          alert('Erro ao realizar o login!');
+        });
+      };
+        return (
+      <View>
+        
+        <TextInput
+          placeholder="Email"
+          value={email}
+          onChangeText={(text) => setEmail(text)}
+        />
+        <TextInput
+          placeholder="Senha"
+          secureTextEntry={true}
+          value={senha}
+          onChangeText={(text) => setSenha(text)}
+        />
+        
+        <Button title="Login" onPress={realizarLogin} />
+      </View>
+    );
+    };
 
 
-const CadastroTela = () => {
+const CadastroTela = (props) => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
@@ -655,7 +709,8 @@ const Login = (props) =>{
         <TextInput  secureTextEntry = {true} placeholder = "Senha"style = {styles.inputLogin} value = {senha} onChangeText = {setSenha}/>
 
         <Text style = {styles.buttonLogin} onPress={()=>{
-        AsyncStorage.getItem("USUARIOS")
+        axios
+        .get('https://api-techtitans-default-rtdb.firebaseio.com/usuarios.json')
         .then((info)=>{ 
           const usuarios = JSON.parse(info);
           let achado = false
@@ -690,8 +745,9 @@ const Login = (props) =>{
 const TelasCadastro = (props) =>{
   const [email, setEmail] = useState(""); 
   const [senha, setSenha] = useState("");
+
   return(
-    <View style = {{flex: 1}}>
+    <View style = {{flex: 1, marginTop: 40}}>
       <Navigator screenOptions = {{headerStyle:{ 
                                   backgroundColor: "#4B74C5"},
                                 headerTitleStyle:{
