@@ -23,52 +23,6 @@ const api  = axios.create({
 const Tab = createBottomTabNavigator();
 const {Navigator, Screen} = Tab;
 
-const realizarLogin = () => {
-  axios
-    .get('https://api-techtitans-default-rtdb.firebaseio.com/usuarios.json')
-    .then((response) => {
-      const usuarios = response.data;
-
-      const usuarioEncontrado = usuarios.find(
-        (usuario) => usuario.email === email && usuario.senha === senha
-      );
-
-      if (usuarioEncontrado) {
-        // Lógica para realizar o login com sucesso
-        console.log('Login realizado com sucesso!');
-        alert('Login realizado com sucesso!');
-      } else {
-        // Lógica para tratar usuário não encontrado
-        console.log('Usuário não encontrado!');
-        alert('Usuário não encontrado!');
-      }
-    })
-    .catch((error) => {
-      // Lógica para lidar com erros da API
-      console.error(error);
-      alert('Erro ao realizar o login!');
-    });
-    return (
-      <View>
-        <TextInput
-          placeholder="Email"
-          value={email}
-          onChangeText={(text) => setEmail(text)}
-        />
-        <TextInput
-          placeholder="Senha"
-          secureTextEntry={true}
-          value={senha}
-          onChangeText={(text) => setSenha(text)}
-        />
-        <Button title="Cadastrar" onPress={cadastrar} />
-        <Button title="Login" onPress={realizarLogin} />
-      </View>
-    );
-    
-};
-
-
 
 
 const CadastroTela = () => {
@@ -150,8 +104,8 @@ const Procurar = (props) =>{
       <ScrollView>
         <View>
           <Text style = {styles.titleModal}>ALIMENTO</Text>
-          <Text style = {styles.dadosModal}>Nome: {data.nm_alimento}</Text>
           <Text style = {styles.dadosModal}>ID: {data.id}</Text>
+          <Text style = {styles.dadosModal}>Nome: {data.nm_alimento}</Text>
           <Text style = {styles.dadosModal}>Categoria: {data.cat_alimento}</Text>
           <Text style = {styles.dadosModal}>Origem: {data.orig_alimento}</Text>
           <Text style = {styles.dadosModal}>Descrição: {data.desc_alimento} </Text>
@@ -159,16 +113,16 @@ const Procurar = (props) =>{
 
         <View>
           <Text style = {styles.titleModal}>DISTRIBUIDOR</Text>
-          <Text style = {styles.dadosModal}>Nome: {data.nm_distribuidor}</Text>
           <Text style = {styles.dadosModal}>ID: {data.id}</Text>
+          <Text style = {styles.dadosModal}>Nome: {data.nm_distribuidor}</Text>
           <Text style = {styles.dadosModal}>Endereço: {data.end_distribuidor}</Text>
           <Text style = {styles.dadosModal}>Contato: {data.cont_distribuidor}</Text>
         </View>
 
         <View>
           <Text style = {styles.titleModal}>Fazenda</Text>
-          <Text style = {styles.dadosModal}>Nome: {data.nm_fazenda}</Text>
           <Text style = {styles.dadosModal}>ID: {data.id}</Text>
+          <Text style = {styles.dadosModal}>Nome: {data.nm_fazenda}</Text>
           <Text style = {styles.dadosModal}>Endereço: {data.end_fazenda}</Text>
           <Text style = {styles.dadosModal}>Contato: {data.cont_fazenda}</Text>
         </View>
@@ -725,14 +679,7 @@ const Login = (props) =>{
   
         <Text style = {{color: "white", textAlign: "center", marginTop: 20}}>Ainda não tem cadastro?</Text>
 
-        <Text style = {styles.buttonCriar} onPress={()=>{
-        const usuarios = [ {email: "joao@teste.com", senha: "1234"},
-        {email: "gustavo@teste.com", senha: "1234"},
-        {email: "julia@teste.com", senha: "1234"},
-        {email: "vinicius@teste.com", senha: "1234"} ]
-        AsyncStorage.setItem("USUARIOS", JSON.stringify(usuarios));
-        alert("Ok")
-      }}>Criar Conta</Text>
+       
      
         
       </View>
@@ -760,7 +707,7 @@ const TelasCadastro = (props) =>{
       <Screen name = "Login" options = {{tabBarIcon: ({color, size}) =>(
         <MaterialCommunityIcons name  ="food-fork-drink" color = {color} size = {size}/>
       )}}>
-        {(props)=><Login{...props}/>}
+        {(props)=><LoginTeste{...props}/>}
       </Screen>
 
       <Screen name = "Cadastro" options = {{tabBarIcon: ({color, size})=>(
@@ -817,9 +764,9 @@ export default function App(){
 
   return(
     <NavigationContainer>
-      <View style = {{flex: 1}}>
+      <View style = {{flex: 1, marginTop: 20}}>
       {logado ? <TelasAlimento/> : 
-                  <TelasCadastro onLogar={fazerLogin}/>}
+                  <Login onLogar={fazerLogin}/>}
       </View>
     </NavigationContainer>
   )
