@@ -63,13 +63,46 @@ const Procurar = (props) =>{
       </View>
 
       {data && (
-      <View>
-        <Text>{data.nm_alimento}</Text>
-        <Text>ID: {data.id}</Text>
-        <Text>Categoria: </Text>
-        <Text>Origem: </Text>
-        <Text>Data de validade: </Text>
-      </View>
+      <ScrollView>
+        <View>
+          <Text style = {styles.titleModal}>ALIMENTO</Text>
+          <Text style = {styles.dadosModal}>Nome: {data.nm_alimento}</Text>
+          <Text style = {styles.dadosModal}>ID: {data.id}</Text>
+          <Text style = {styles.dadosModal}>Categoria: {data.cat_alimento}</Text>
+          <Text style = {styles.dadosModal}>Origem: {data.orig_alimento}</Text>
+          <Text style = {styles.dadosModal}>Descrição: {data.desc_alimento} </Text>
+        </View>
+
+        <View>
+          <Text style = {styles.titleModal}>DISTRIBUIDOR</Text>
+          <Text style = {styles.dadosModal}>Nome: {data.nm_distribuidor}</Text>
+          <Text style = {styles.dadosModal}>ID: {data.id}</Text>
+          <Text style = {styles.dadosModal}>Endereço: {data.end_distribuidor}</Text>
+          <Text style = {styles.dadosModal}>Contato: {data.cont_distribuidor}</Text>
+        </View>
+
+        <View>
+          <Text style = {styles.titleModal}>Fazenda</Text>
+          <Text style = {styles.dadosModal}>Nome: {data.nm_fazenda}</Text>
+          <Text style = {styles.dadosModal}>ID: {data.id}</Text>
+          <Text style = {styles.dadosModal}>Endereço: {data.end_fazenda}</Text>
+          <Text style = {styles.dadosModal}>Contato: {data.cont_fazenda}</Text>
+        </View>
+
+        <View>
+          <Text style = {styles.titleModal}>TABELA NUTRICIONAL</Text>
+          <Text style = {styles.dadosModal}>Calorias: {data.calorias}</Text>
+          <Text style = {styles.dadosModal}>Carboidratos: {data.carboidratos}</Text>
+          <Text style = {styles.dadosModal}>Proteínas: {data.proteinas}</Text>
+          <Text style = {styles.dadosModal}>Gorduras totais: {data.gord_totais}</Text>
+          <Text style = {styles.dadosModal}>Gordura saturada: {data.gord_saturada}</Text>
+          <Text style = {styles.dadosModal}>Gordura trans: {data.gord_trans}</Text>
+          <Text style = {styles.dadosModal}>Fibra alimentas: {data.fibra_alimentar}</Text>
+          <Text style = {styles.dadosModal}>Colesterol: {data.colesterol}</Text>
+          <Text style = {styles.dadosModal}>Açúcar: {data.acucar}</Text>
+          <Text style = {styles.dadosModal}>Sódio: {data.sodio}</Text>
+        </View>
+      </ScrollView>
       )}
     </View>
   )
@@ -762,7 +795,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     borderRadius: 9,
     marginTop: 15,
-    fontWeight: 700
+    fontWeight: 900
   },
 
   VModal:{
@@ -783,13 +816,14 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 700,
     marginTop: 5,
-    textAlign: "center"
+    textAlign: "center",
+    color: "#4B74C5"
   },
 
   dadosModal:{
     fontSize: 14,
-    //marginLeft: 130
-    textALign: "center"
+    marginLeft: 5,
+    color: "white"
   },
 
   categoriaModal:{
