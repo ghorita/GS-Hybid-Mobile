@@ -23,9 +23,23 @@ const api  = axios.create({
 const Tab = createBottomTabNavigator();
 const {Navigator, Screen} = Tab;
 
-const LoginTeste = (props)=>{
+const Login = (props)=>{
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
+
+  const cadastrar = () => {
+    axios
+      .post('https://api-techtitans-default-rtdb.firebaseio.com/usuarios.json', { email, senha })
+      .then((response) => {
+        console.log(response.data);
+        alert('Cadastro realizado com sucesso!');
+      })
+      .catch((error) => {
+        console.error(error);
+        alert('Erro ao cadastrar!');
+      });
+  };
+
   const realizarLogin = () => {
     
       axios
@@ -41,79 +55,49 @@ const LoginTeste = (props)=>{
           });
   
           if (usuarioEncontrado) {
-            // Lógica para realizar o login com sucesso
             props.onLogar(true);
             console.log('Login realizado com sucesso!');
             alert('Login realizado com sucesso!');
           } else {
-            // Lógica para tratar usuário não encontrado
             props.onLogar(false);
             console.log('Usuário não encontrado!');
             alert('Usuário não encontrado!');
           }
         })
         .catch((error) => {
-          // Lógica para lidar com erros da API
           console.error(error);
           alert('Erro ao realizar o login!');
         });
       };
         return (
-      <View>
+      <View style = {{flex: 1, backgroundColor: "#202025"}}>
         
+        <Image source = {imgLogo} style = {styles.logoLogin}/>
+
         <TextInput
+          style = {styles.inputLogin}
           placeholder="Email"
           value={email}
           onChangeText={(text) => setEmail(text)}
         />
         <TextInput
+          style = {styles.inputLogin}
           placeholder="Senha"
           secureTextEntry={true}
           value={senha}
           onChangeText={(text) => setSenha(text)}
         />
         
-        <Button title="Login" onPress={realizarLogin} />
+        <Text style = {styles.buttonLogin} onPress={realizarLogin}>Login</Text>
+        <Text style = {{color: "white", textAlign: "center", marginTop: 20}}>Ainda não tem cadastro?</Text>
+        <Text style = {{color: "white", textAlign: "center", marginTop: 20}}>Clique no botão abaixo para registrar uma nova conta</Text>
+        <Text style = {styles.buttonRegistrarse} onPress = {cadastrar}>Registrar</Text>
+        
       </View>
     );
     };
 
 
-const CadastroTela = (props) => {
-  const [email, setEmail] = useState("");
-  const [senha, setSenha] = useState("");
-
-  const cadastrar = () => {
-    axios
-      .post('https://api-techtitans-default-rtdb.firebaseio.com/usuarios.json', { email, senha })
-      .then((response) => {
-        // Lógica para lidar com a resposta da API
-        console.log(response.data);
-        alert('Cadastro realizado com sucesso!');
-      })
-      .catch((error) => {
-        // Lógica para lidar com erros da API
-        console.error(error);
-        alert('Erro ao cadastrar!');
-      });
-  };
-
-  return (
-    <View>
-      <TextInput
-        placeholder="Email"
-        value={email}
-        onChangeText={(text) => setEmail(text)}
-      />
-      <TextInput
-        placeholder="Senha"
-        value={senha}
-        onChangeText={(text) => setSenha(text)}
-      />
-      <Button title="Cadastrar" onPress={cadastrar} />
-    </View>
-  );
-};
 
 const Procurar = (props) =>{
   const [id, setId] = useState("");
@@ -695,52 +679,7 @@ const Alimentos = (props)=>{
   )
 }
 
-const Login = (props) =>{
 
-  const [email, setEmail] = useState(""); 
-  const [senha, setSenha] = useState("");
-  return(
-
-    <View style = {{flex: 1, backgroundColor: "#202025"}}>
-      <Image source = {imgLogo} style = {styles.logoLogin}/>
-
-      <View style = {{marginTop: 10}}>
-        <TextInput placeholder = "Email" style = {styles.inputLogin} value = {email} onChangeText = {setEmail}/>
-        <TextInput  secureTextEntry = {true} placeholder = "Senha"style = {styles.inputLogin} value = {senha} onChangeText = {setSenha}/>
-
-        <Text style = {styles.buttonLogin} onPress={()=>{
-        axios
-        .get('https://api-techtitans-default-rtdb.firebaseio.com/usuarios.json')
-        .then((info)=>{ 
-          const usuarios = JSON.parse(info);
-          let achado = false
-          for( const user of usuarios) { 
-            if (user.email === email && 
-                user.senha === senha){ 
-                  achado = true;
-            }
-          }
-          if (achado) { 
-            props.onLogar(true);
-            alert("Usuario logado");
-          } else {
-            props.onLogar(false);
-            alert("Usuario ou senha incorretos");
-          }
-
-        })
-        .catch((err) => alert("Erro ao ler a lista e usuarios"))
-      }}>Login</Text>
-  
-        <Text style = {{color: "white", textAlign: "center", marginTop: 20}}>Ainda não tem cadastro?</Text>
-
-       
-     
-        
-      </View>
-    </View>
-  )
-}
 
 const TelasCadastro = (props) =>{
   const [email, setEmail] = useState(""); 
@@ -763,7 +702,7 @@ const TelasCadastro = (props) =>{
       <Screen name = "Login" options = {{tabBarIcon: ({color, size}) =>(
         <MaterialCommunityIcons name  ="food-fork-drink" color = {color} size = {size}/>
       )}}>
-        {(props)=><LoginTeste{...props}/>}
+        {(props)=><Login{...props}/>}
       </Screen>
 
       <Screen name = "Cadastro" options = {{tabBarIcon: ({color, size})=>(
