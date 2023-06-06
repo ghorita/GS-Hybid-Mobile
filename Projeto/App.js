@@ -23,13 +23,61 @@ const api  = axios.create({
 const Tab = createBottomTabNavigator();
 const {Navigator, Screen} = Tab;
 
+const realizarLogin = () => {
+  axios
+    .get('https://api-techtitans-default-rtdb.firebaseio.com/usuarios.json')
+    .then((response) => {
+      const usuarios = response.data;
+
+      const usuarioEncontrado = usuarios.find(
+        (usuario) => usuario.email === email && usuario.senha === senha
+      );
+
+      if (usuarioEncontrado) {
+        // Lógica para realizar o login com sucesso
+        console.log('Login realizado com sucesso!');
+        alert('Login realizado com sucesso!');
+      } else {
+        // Lógica para tratar usuário não encontrado
+        console.log('Usuário não encontrado!');
+        alert('Usuário não encontrado!');
+      }
+    })
+    .catch((error) => {
+      // Lógica para lidar com erros da API
+      console.error(error);
+      alert('Erro ao realizar o login!');
+    });
+    return (
+      <View>
+        <TextInput
+          placeholder="Email"
+          value={email}
+          onChangeText={(text) => setEmail(text)}
+        />
+        <TextInput
+          placeholder="Senha"
+          secureTextEntry={true}
+          value={senha}
+          onChangeText={(text) => setSenha(text)}
+        />
+        <Button title="Cadastrar" onPress={cadastrar} />
+        <Button title="Login" onPress={realizarLogin} />
+      </View>
+    );
+    
+};
+
+
+
+
 const CadastroTela = () => {
-  const [nome, setNome] = useState('');
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
 
   const cadastrar = () => {
     axios
-      .post('https://api-techtitans-default-rtdb.firebaseio.com/usuarios.json', { nome, email })
+      .post('https://api-techtitans-default-rtdb.firebaseio.com/usuarios.json', { email, senha })
       .then((response) => {
         // Lógica para lidar com a resposta da API
         console.log(response.data);
@@ -45,14 +93,14 @@ const CadastroTela = () => {
   return (
     <View>
       <TextInput
-        placeholder="Nome"
-        value={nome}
-        onChangeText={(text) => setNome(text)}
-      />
-      <TextInput
         placeholder="Email"
         value={email}
         onChangeText={(text) => setEmail(text)}
+      />
+      <TextInput
+        placeholder="Senha"
+        value={senha}
+        onChangeText={(text) => setSenha(text)}
       />
       <Button title="Cadastrar" onPress={cadastrar} />
     </View>
