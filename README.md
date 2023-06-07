@@ -1,6 +1,6 @@
 # GS-Hybid-Mobile
 
-# Alimento
+## Alimento
 alimento : Este endpoint retorna uma lista de todos os produtos alimentícios. O
 corpo da resposta é uma matriz JSON de objetos, cada um representando um
 produto alimentício. Cada objeto tem as seguintes propriedades:
