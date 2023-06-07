@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, FlatList, Text, TextInput, View, StyleSheet, Image, Modal, ScrollView} from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Text, TextInput, View, StyleSheet, Image, Modal, ScrollView} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {AntDesign, FontAwesome5, MaterialCommunityIcons} from '@expo/vector-icons';
